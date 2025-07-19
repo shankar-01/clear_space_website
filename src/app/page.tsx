@@ -2,10 +2,9 @@
 "use client";
 import { useState } from 'react';
 import Head from 'next/head';
-import Image from 'next/image';
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('all');
+  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const areas = [
@@ -405,7 +404,7 @@ export default function Home() {
                 </div>
                 <div className="md:w-2/3">
                   <p className="text-gray-600 mb-4">
-                    At Clear Space, we're committed to environmentally responsible clearance practices. 
+                    At Clear Space, we&apos;re committed to environmentally responsible clearance practices. 
                     We strive to recycle or reuse over 90% of the items we collect, minimizing landfill waste.
                   </p>
                   <ul className="space-y-2">
@@ -441,7 +440,7 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4">What Our Customers Say</h2>
               <div className="w-20 h-1 bg-green-500 mx-auto mb-6"></div>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Rated 4.9/5 from 135+ reviews across Surrey and London. Don't just take our word for it!
+                Rated 4.9/5 from 135+ reviews across Surrey and London. Don&apos;t just take our word for it!
               </p>
             </div>
             
@@ -460,7 +459,7 @@ export default function Home() {
                       </svg>
                     ))}
                   </div>
-                  <p className="text-gray-700 mb-4 italic">"{testimonial.text}"</p>
+                  <p className="text-gray-700 mb-4 italic">&quot;{testimonial.text}&quot;</p>
                   <div className="flex items-center">
                     <div className="bg-gray-200 border-2 border-dashed rounded-full w-12 h-12" />
                     <div className="ml-3">
@@ -497,7 +496,7 @@ export default function Home() {
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-2">Do I need to be present during clearance?</h3>
                 <p className="text-gray-600">
-                  While it's helpful for you to be present to answer any questions, it's not required. 
+                  While it&apos;s helpful for you to be present to answer any questions, it&apos;s not required. 
                   We can work with keys or access codes if arranged in advance. For probate clearances, 
                   we often work with solicitors or executors remotely.
                 </p>
@@ -505,7 +504,7 @@ export default function Home() {
               <div className="bg-white rounded-xl shadow-sm p-6">
                 <h3 className="text-xl font-bold text-gray-800 mb-2">How do you dispose of items?</h3>
                 <p className="text-gray-600">
-                  We're committed to eco-friendly disposal. Usable items are donated to charities, 
+                  We&apos;re committed to eco-friendly disposal. Usable items are donated to charities, 
                   recyclables are processed at licensed facilities, and only non-recyclable waste goes 
                   to landfill. We typically achieve over 90% recycling/reuse rates.
                 </p>
