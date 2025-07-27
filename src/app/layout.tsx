@@ -1,6 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import Head from "next/head";
+import ReviewBanner from "@/components/reviews";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+config.autoAddCss = false;
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +34,29 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <div className="min-h-screen bg-gray-50">
+      <ReviewBanner />
+      <Head>
+        <title>Clear Space | Professional Property Clearance Services</title>
+        <meta name="description" content="Professional property clearance services across Surrey and London. House clearance, garden clearance, loft clearance and more." />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      {/* Header */}
+      <header className="bg-[#6a7f94] shadow-sm sticky top-0 z-50 px-20">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <div className="flex items-center">
+            <img src="/logo.png" alt="Clear Space Logo" className="w-28 h-20 mr-2" />
+            {/* <h1 className="text-2xl font-bold text-gray-800">Clear Space</h1> */}
+          </div>
+          
+          {/* Desktop Navigation */}
+          <Navbar />
+        </div>
+      </header>
         {children}
+        <Footer />
+    </div>
       </body>
     </html>
   );
