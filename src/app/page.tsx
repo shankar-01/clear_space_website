@@ -1,14 +1,7 @@
 // pages/index.js
 "use client";
-import { useState } from 'react';
-import Head from 'next/head';
-import ReviewBanner from '@/components/reviews';
-import Navbar from '@/components/navbar';
-import Footer from '@/components/footer';
-import CoveragePage from './coverage/page';
 export default function Home() {
-  
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
   const areas = [
     { name: 'London', count: 28 },
