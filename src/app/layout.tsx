@@ -43,17 +43,9 @@ export default function RootLayout({
       </Head>
 
       {/* Header */}
-      <header className="bg-[#6a7f94] shadow-sm sticky top-0 z-50 px-20">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center">
-            <img src="/logo.png" alt="Clear Space Logo" className="w-28 h-20 mr-2" />
-            {/* <h1 className="text-2xl font-bold text-gray-800">Clear Space</h1> */}
-          </div>
-          
-          {/* Desktop Navigation */}
+      
           <Navbar />
-        </div>
-      </header>
+        
         {children}
         <Footer />
     </div>

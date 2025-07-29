@@ -11,14 +11,13 @@ export default function Navbar() {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
-  const toggleSubmenu = (menu: string) =>
-    setOpenSubmenu(openSubmenu === menu ? null : menu);
+  
 
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");
 
   const firstMenuItems = [
-    { title: "Home", href: "/" },
+    // { title: "Home", href: "/" },
     { title: "About", href: "/about" },
   ];
 
@@ -32,166 +31,154 @@ export default function Navbar() {
   ];
 
   return (
-    <nav
-      className="flex flex-col lg:flex-row items-center justify-between uppercase tracking-wider relative z-50 text-[16.5px] font-outfit font-medium gap-2"
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "10px",
-      }}
-    >
-      {/* Mobile menu button */}
-      <button
-        type="button"
-        className="lg:hidden flex items-center justify-between w-full py-2 px-4"
-        onClick={toggleMobileMenu}
-      >
-        <span className="font-medium">MENU</span>
-        <span className="w-6 h-6 flex items-center justify-center">
-          <span className={`fas ${isMobileMenuOpen ? "fa-times" : "fa-bars"}`} />
-        </span>
-      </button>
+    <header className="bg-[#003366] text-white sticky top-0 z-50 shadow-md">
+      <div className="max-w-screen-xl mx-auto px-4 py-4 flex justify-between items-center">
+        {/* Logo */}
+        <div className="flex items-center">
+          <Link href="/">
+            <img
+              src="/logo1.png"
+              alt="Clear Space Logo"
+              className="w-fit h-27 object-contain"
+            />
+          </Link>
+        </div>
 
-      {/* Menu */}
-      <ul
-        className={`${isMobileMenuOpen ? "block" : "hidden"
-          } lg:flex flex-col lg:flex-row w-full lg:w-auto bg-white lg:bg-transparent px-4 lg:px-0 gap-2`}
-      >
-        {/* First set of links */}
-        {firstMenuItems.map((item) => (
-          <li key={item.title} className="relative group">
-            <Link
-              href={item.href}
-              className={`block py-2.5 px-3 rounded transition-all duration-300
-                ${isActive(item.href)
-                  ? "bg-gray-100 font-semibold"
-                  : "hover:bg-gray-100 hover:bg-opacity-40"
-                }
-              `}
-            >
-              {item.title}
-            </Link>
-          </li>
-        ))}
-
-        {/* Services - Mega Menu */}
-        <li
-          className="relative group"
-          onMouseEnter={() => toggleSubmenu("services")}
-          onMouseLeave={() => toggleSubmenu("services")}
+        {/* Mobile menu button */}
+        <button
+          type="button"
+          className="lg:hidden flex items-center gap-2 text-white"
+          onClick={toggleMobileMenu}
         >
-          <div className="flex items-center">
+          <span className="font-medium">Menu</span>
+          <i className={`fas ${isMobileMenuOpen ? "fa-times" : "fa-bars"}`} />
+        </button>
+
+        {/* Desktop & Mobile Navigation */}
+        <nav
+          className={`${isMobileMenuOpen ? "block" : "hidden"
+            } lg:flex flex-col lg:flex-row items-center lg:gap-3 absolute lg:static top-full left-0 w-full lg:w-auto bg-[#003366] lg:bg-transparent p-4 lg:p-0 transition-all duration-300`}
+        >
+          {/* First set */}
+          {firstMenuItems.map((item) => (
+            <NavItem key={item.title} item={item} isActive={isActive(item.href)} />
+          ))}
+
+          {/* Services - Mega Menu */}
+          <div
+            className="relative group"
+            onMouseEnter={() => setOpenSubmenu("services")}
+            onMouseLeave={() => setOpenSubmenu(null)}
+          >
             <Link
               href="/services"
               className={`block py-2.5 px-3 rounded transition-all duration-300 flex items-center gap-1
                 ${isActive("/our-services")
-                  ? "bg-gray-100 font-semibold"
-                  : "hover:bg-gray-100 hover:bg-opacity-40"
-                }
+                  ? "bg-[#66CCFF] text-black font-semibold"
+                  : "hover:bg-[#66CCFF] hover:text-black"}
               `}
             >
               Services
-              <span className="fas fa-chevron-down text-sm" />
+              <i className="fas fa-chevron-down text-sm" />
             </Link>
 
-            <button
-              className="lg:hidden p-2"
-              onClick={() => toggleSubmenu("services")}
-            >
-              <span className="fas fa-chevron-down"></span>
-            </button>
+            {/* Submenu */}
+            {openSubmenu === "services" && (
+              <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 p-6 z-50 grid grid-cols-1 md:grid-cols-3 bg-[#003366] text-white shadow-2xl border border-[#006699] rounded-xl w-[90vw] max-w-5xl">
+                {/* Column 1 */}
+                <div className="space-y-3 flex flex-col">
+                  <ServiceItem
+                    title="House Clearance"
+                    href="/house-clearance"
+                    imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-house-clearance.jpg.webp"
+                  />
+                  <ServiceItem
+                    title="Garden Clearance"
+                    href="/garden-clearance"
+                    imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-garden-clearing.jpg.webp"
+                  />
+                  <ServiceItem
+                    title="Waste Clearance"
+                    href="/waste-clearance"
+                    imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-waste-clearance.jpg.webp"
+                  />
+                </div>
+
+                {/* Column 2 */}
+                <div className="space-y-3 flex flex-col">
+                  <ServiceItem
+                    title="Loft Clearance"
+                    href="/loft-clearance"
+                    imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-loft-clearance.jpg.webp"
+                  />
+                  <ServiceItem
+                    title="Retirement Homes"
+                    href="/care-home-room-clearance"
+                    imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/retirement-home-clearance-services.jpg.webp"
+                  />
+                  <ServiceItem
+                    title="Storage"
+                    href="/storage"
+                    imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/self-storage-clearance-services-1.jpg.webp"
+                  />
+                </div>
+
+                {/* Column 3 */}
+                <div className="space-y-3 flex flex-col">
+                  <ServiceItem
+                    title="Garage Clearance"
+                    href="/garage-clearance"
+                    imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-garage-clearance.jpg.webp"
+                  />
+                  <ServiceItem
+                    title="Office Clearance"
+                    href="/office-clearance"
+                    imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-office-clearance2.jpg.webp"
+                  />
+                  <ServiceItem
+                    title="Hoarder Clearance"
+                    href="/hoarding-clearance"
+                    imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-hoarders.jpg.webp"
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
-          {openSubmenu === "services" && (
-            <div 
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              boxSizing: "border-box",
-            }}
-            className="absolute left-1/2 transform -translate-x-1/2 bg-[#6a7f94] shadow-2xl border border-gray-200 rounded-xl mt-2 p-6 z-50 grid grid-cols-1 md:grid-cols-3">
-              {/* Column 1 */}
-              <div className="space-y-3" style={{ display: "flex", flexDirection: "column", boxSizing: "border-box" }}>
-                <ServiceItem
-                  title="House Clearance"
-                  href="/house-clearance"
-                  imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-house-clearance.jpg.webp"
-                />
-                <ServiceItem
-                  title="Garden Clearance"
-                  href="/garden-clearance"
-                  imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-garden-clearing.jpg.webp"
-                />
-                <ServiceItem
-                  title="Waste Clearance"
-                  href="/waste-clearance"
-                  imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-waste-clearance.jpg.webp"
-                />
-              </div>
-
-              {/* Column 2 */}
-              <div className="space-y-3">
-                <ServiceItem
-                  title="Loft Clearance"
-                  href="/loft-clearance"
-                  imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-loft-clearance.jpg.webp"
-                />
-                <ServiceItem
-                  title="Retirement Homes"
-                  href="/care-home-room-clearance"
-                  imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/retirement-home-clearance-services.jpg.webp"
-                />
-                <ServiceItem
-                  title="Storage"
-                  href="/storage"
-                  imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/self-storage-clearance-services-1.jpg.webp"
-                />
-              </div>
-
-              {/* Column 3 */}
-              <div className="space-y-3">
-                <ServiceItem
-                  title="Garage Clearance"
-                  href="/garage-clearance"
-                  imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-garage-clearance.jpg.webp"
-                />
-                <ServiceItem
-                  title="Office Clearance"
-                  href="/office-clearance"
-                  imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-office-clearance2.jpg.webp"
-                />
-                <ServiceItem
-                  title="Hoarder Clearance"
-                  href="/hoarding-clearance"
-                  imgSrc="https://www.iclearpropertyservices.co.uk/wp-content/uploads/service-hoarders.jpg.webp"
-                />
-              </div>
-            </div>
-          )}
-        </li>
-
-        {/* Second set of links */}
-        {secondMenuItems.map((item) => (
-          <li key={item.title} className="relative group">
-            <Link
-              href={item.href}
-              className={`block py-2.5 px-3 rounded transition-all duration-300
-                ${isActive(item.href)
-                  ? "bg-gray-100 font-semibold"
-                  : "hover:bg-gray-100 hover:bg-opacity-40"
-                }
-              `}
-            >
-              {item.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+          {/* Second set */}
+          {secondMenuItems.map((item) => (
+            <NavItem key={item.title} item={item} isActive={isActive(item.href)} />
+          ))}
+        </nav>
+      </div>
+    </header>
   );
 }
 
-const ServiceItem = ({
+function NavItem({
+  item,
+  isActive,
+}: {
+  item: { title: string; href: string };
+  isActive: boolean;
+}) {
+  return (
+    <li className="list-none">
+      <Link
+        href={item.href}
+        className={`block py-2.5 px-3 rounded transition duration-300
+        ${isActive
+            ? "bg-[#66CCFF] text-black font-semibold"
+            : "hover:bg-[#66CCFF] hover:text-black"}
+        `}
+      >
+        {item.title}
+      </Link>
+    </li>
+  );
+}
+
+function ServiceItem({
   title,
   href,
   imgSrc,
@@ -199,21 +186,21 @@ const ServiceItem = ({
   title: string;
   href: string;
   imgSrc: string;
-}) => (
-  <Link
-    href={href}
-    className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded transition"
-  >
-    <div className="w-40 h-16 rounded overflow-hidden flex-shrink-0">
-      <img
-        src={imgSrc}
-        alt={title}
-        className="w-full h-full object-cover"
-        width={120}
-        height={120}
-        loading="lazy"
-      />
-    </div>
-    <span className="font-medium">{title}</span>
-  </Link>
-);
+}) {
+  return (
+    <Link
+      href={href}
+      className="flex items-center gap-2 p-2 rounded hover:bg-[#66CCFF] hover:text-black transition"
+    >
+      <div className="w-40 h-16 rounded overflow-hidden flex-shrink-0">
+        <img
+          src={imgSrc}
+          alt={title}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <span className="font-medium">{title}</span>
+    </Link>
+  );
+}
