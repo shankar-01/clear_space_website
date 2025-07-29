@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* globals.css or layout.tsx */
+@import "leaflet/dist/leaflet.css";
 
 :root {
   --background: #ffffff;

@@ -55,7 +55,7 @@ export default function Navbar() {
       {/* Menu */}
       <ul
         className={`${isMobileMenuOpen ? "block" : "hidden"
-          } lg:flex flex-col lg:flex-row w-full lg:w-auto bg-white lg:bg-transparent px-4 lg:px-0`}
+          } lg:flex flex-col lg:flex-row w-full lg:w-auto bg-white lg:bg-transparent px-4 lg:px-0 gap-2`}
       >
         {/* First set of links */}
         {firstMenuItems.map((item) => (
@@ -82,7 +82,7 @@ export default function Navbar() {
         >
           <div className="flex items-center">
             <Link
-              href="/our-services"
+              href="/services"
               className={`block py-2.5 px-3 rounded transition-all duration-300 flex items-center gap-1
                 ${isActive("/our-services")
                   ? "bg-gray-100 font-semibold"
