@@ -1,8 +1,9 @@
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
+
 import Head from "next/head";
 import ReviewBanner from "@/components/reviews";
 import Navbar from "@/components/navbar";

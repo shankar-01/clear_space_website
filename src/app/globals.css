@@ -2,6 +2,8 @@
 /* globals.css or layout.tsx */
 @import "leaflet/dist/leaflet.css";
 
+@import "@fortawesome/fontawesome-svg-core/styles.css";
+@import '@fortawesome/fontawesome-free/css/all.min.css';
 :root {
   --background: #ffffff;
   --foreground: #171717;

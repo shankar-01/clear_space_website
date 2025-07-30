@@ -5,7 +5,8 @@ import { faStar, faTruck, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 
 export default function ReviewBanner() {
   return (
-    <div className="w-full bg-[#e0f4ff] text-[#003366] py-4 px-6 flex flex-col md:flex-row items-center justify-between gap-3 z-[20051] text-sm sm:text-base border-b border-[#c0e6f9] shadow-sm">
+    <div className="hidden sm:flex w-full bg-[#e0f4ff] text-[#003366] py-4 px-6 flex-col md:flex-row items-center justify-between gap-3 z-[20051] text-sm sm:text-base border-b border-[#c0e6f9] shadow-sm">
+
       
       {/* Left - Star Reviews */}
       <div className="flex items-center justify-center md:justify-start w-full md:w-1/2">
@@ -14,7 +15,7 @@ export default function ReviewBanner() {
           className="flex items-center gap-2 hover:underline"
         >
           <p className="font-semibold">Read our 5★ Reviews</p>
-          <div className="flex space-x-[1px]">
+          <div className="flex space-x-[1px] md:hidden lg:flex">
             {[...Array(5)].map((_, i) => (
               <FontAwesomeIcon
                 key={i}

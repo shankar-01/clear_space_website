@@ -1,119 +1,186 @@
 "use client";
-import Image from "next/image";
-import { FaPhone, FaCalendarAlt, FaRecycle } from "react-icons/fa";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
+
 
 const services = [
   {
-    title: "House Clearances",
-    desc: "Enjoy a stress-free house clearance experience with Clear Property Services. Our skilled team specialises in collecting junk, whether general or specific to areas like the shed, attic, or basement.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    title: "House Clearance",
+    icon: "🏠",
+    description:
+      "Complete property clearance services for homes of all sizes. We handle everything from furniture to personal belongings with care and professionalism.",
   },
   {
-    title: "Garden Clearances",
-    desc: "We assist with all your garden clearance needs. We take pride in providing licensed services tailored to meet full and practical clearance requirements at competitive rates.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    title: "Garden Clearance",
+    icon: "🌿",
+    description:
+      "Professional garden waste removal and landscaping clearance. We transform overgrown spaces into clean, usable areas.",
   },
   {
     title: "Loft Clearance",
-    desc: "Benefit from our 15 years of experience and our trained teams swiftly managing disruptions and maintaining peace. We also assess and clear responsibly.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    icon: "📦",
+    description:
+      "Efficient loft and attic clearance with safe disposal. We handle bulky items, old furniture, and decades of accumulated items.",
   },
   {
-    title: "Office Clearances",
-    desc: "We provide office clearance services for businesses of all sizes. Our team ensures a smooth and efficient process, handling waste efficiently.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    title: "Office Clearance",
+    icon: "🏢",
+    description:
+      "Commercial clearance services for offices and businesses. Minimal disruption with maximum efficiency.",
   },
   {
-    title: "Residential Clearances",
-    desc: "We offer residential clearance services for homes and apartments. Our team ensures a smooth and efficient process, handling waste efficiently.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    title: "Storage Clearance",
+    icon: "🔒",
+    description:
+      "Clear out storage units quickly and efficiently. We help you reclaim your space and stop paying for unused storage.",
   },
   {
-    title: "Commercial Clearances",
-    desc: "We provide commercial clearance services for businesses of all sizes. Our team ensures a smooth and efficient process, handling waste efficiently.",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    title: "Hoarder Clearance",
+    icon: "🧹",
+    description:
+      "Specialized services for hoarding situations with sensitivity. Discreet, non-judgmental support for challenging clearances.",
   },
 ];
 
-const howItWorks = [
-  {
-    icon: <FaPhone className="text-blue-600 text-2xl" />,
-    title: "Get in touch",
-    desc: "Operating round the clock, seven days a week, we prioritise punctuality and professionalism. Count on us to promptly clear your waste, leaving your site impeccably tidy.",
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.15,
+    },
   },
-  {
-    icon: <FaCalendarAlt className="text-blue-600 text-2xl" />,
-    title: "Select a date",
-    desc: "Our team offers flexible scheduling to accommodate your needs. We will provide an estimated arrival time, ensuring you are not kept waiting.",
-  },
-  {
-    icon: <FaRecycle className="text-blue-600 text-2xl" />,
-    title: "Waste Removal",
-    desc: "We transport your waste to licensed transfer sites, where as much of it is reused and recycled as possible. Rest assured, your waste is handled in full compliance with legal and environmental regulations.",
-  },
-];
+};
+
+const item = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0 },
+};
 
 export default function ServicesPage() {
   return (
-    <div className="bg-[#5a6d84] min-h-screen text-gray-800">
-      {/* Background Image */}
-      <div
-        className="bg-cover bg-center py-20"
-        style={{ backgroundImage: "url('/furniture-bg.jpg')" }}
-      >
-        <h2 className="text-white text-3xl font-semibold text-center mb-10">
-          Our clearance services
-        </h2>
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-3 gap-6">
-          {services.map((service, i) => (
-            <div
-              key={i}
-              className="bg-white p-6 rounded-md shadow-md hover:shadow-xl transition"
+    <div className="bg-[#f0f8ff] min-h-screen">
+      {/* Services Section */}
+      <section id="services" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-[#003366] mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              <img
-                src={service.image}
-                width={400}
-                height={200}
-                alt={service.title}
-                className="w-full h-40 object-cover rounded-md mb-4"
-              />
-              <h3 className="text-lg font-semibold mb-2 text-center">{service.title}</h3>
-              <p className="text-sm text-gray-700 mb-4">{service.desc}</p>
-              <button className="bg-blue-600 text-white px-4 py-2 text-sm rounded hover:bg-blue-700 block mx-auto">
-                See more
-              </button>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* How It Works Section */}
-      <section className="bg-white py-20 px-8">
-            <h1 className="text-3xl font-bold mb-4 text-gray-800 px-4">How it works</h1>
-        
-        <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-10">
-          
-          <div className="flex-1">
-            <Image
-              src="/how-it-works.png"
-              width={600}
-              height={400}
-              alt="How it works"
-              className="rounded-lg shadow-lg"
-            />
+              Our Services
+            </motion.h2>
+            <div className="w-20 h-1 bg-[#66CCFF] mx-auto mb-6"></div>
+            <motion.p
+              className="text-gray-600 max-w-2xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              We offer comprehensive clearance solutions for residential and commercial properties.
+              Our team handles everything with care, efficiency, and environmental responsibility.
+            </motion.p>
           </div>
-          <div className="flex-1 space-y-6">
-            {howItWorks.map((step, i) => (
-              <div
-                key={i}
-                className="flex items-start bg-gray-100 p-5 rounded-lg shadow-sm gap-4"
+
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                className="bg-[#f0f8ff] rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#003366]/10 flex flex-col"
+                variants={item}
+                whileHover={{ y: -10, transition: { duration: 0.3 } }}
               >
-                <div>{step.icon}</div>
-                <div>
-                  <h3 className="text-lg font-semibold">{step.title}</h3>
-                  <p className="text-sm text-gray-700">{step.desc}</p>
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold text-[#003366] mb-2">{service.title}</h3>
+                <p className="text-gray-600 mb-4 flex-grow">{service.description}</p>
+                <a
+                  href="#contact"
+                  className="text-[#006699] font-medium hover:text-[#003366] flex items-center"
+                >
+                  Get a quote
+                  <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                  {/* <img
+                    src="/icons/arrow-right.svg"
+                    alt="Arrow Right"
+                    className="w-4 h-4 ml-2"
+                  /> */}
+                </a>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-16 bg-[#f0f8ff]">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <motion.h2
+              className="text-3xl md:text-4xl font-bold text-[#003366] mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              Our Simple Process
+            </motion.h2>
+            <div className="w-20 h-1 bg-[#66CCFF] mx-auto mb-6"></div>
+            <motion.p
+              className="text-gray-600 max-w-2xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+            >
+              Getting your space cleared has never been easier. Just follow these simple steps:
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              {
+                step: 1,
+                title: "Contact Us",
+                desc: "Call or email us with details of your clearance needs",
+              },
+              {
+                step: 2,
+                title: "Get a Quote",
+                desc: "We provide a free, no-obligation quote",
+              },
+              {
+                step: 3,
+                title: "Schedule",
+                desc: "Choose a convenient date and time for your clearance",
+              },
+              {
+                step: 4,
+                title: "Clearance Day",
+                desc: "Our team arrives and clears your space efficiently",
+              },
+            ].map((step, index) => (
+              <motion.div
+                key={index}
+                className="text-center p-6 bg-white rounded-xl shadow-sm border border-[#003366]/10"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * index, duration: 0.5 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <div className="w-16 h-16 bg-[#003366] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                  {step.step}
                 </div>
-              </div>
+                <h3 className="text-xl font-bold text-[#003366] mb-2">
+                  {step.title}
+                </h3>
+                <p className="text-gray-600">{step.desc}</p>
+              </motion.div>
             ))}
           </div>
         </div>

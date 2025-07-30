@@ -63,7 +63,14 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Coverage Areas</h4>
             <ul className="space-y-2 text-sm text-[#003366cc]">
-              {["London", "Surrey", "Berkshire", "Kent", "Hampshire", "Middlesex"].map((area) => (
+              {[
+                "Greater London",
+                "Surrey",
+                "Berkshire",
+                "Kent",
+                "Hampshire",
+                "Middlesex",
+              ].map((area) => (
                 <li key={area}>
                   <a href="#coverage" className="hover:text-[#66CCFF] transition">{area}</a>
                 </li>
@@ -89,7 +96,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="text-[#66CCFF] mt-1" />
-                <span className="text-base">Surrey & London Areas</span>
+                <span className="text-base">Surrey & Greater London Areas</span>
               </li>
             </ul>
           </div>
