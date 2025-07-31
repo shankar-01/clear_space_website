@@ -1,50 +1,18 @@
 // pages/index.js
 "use client";
-import { faArrowRight, faCheck, faEnvelope, faMapMarkerAlt, faPhoneAlt, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faEnvelope, faMapMarkerAlt, faPhoneAlt, faStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 
 import dynamic from "next/dynamic";
+import ServicesPage from "./services/page";
+import { TypeAnimation } from 'react-type-animation';
 const CoverageSection = dynamic(() => import("@/components/coveragesection"), {
   ssr: false,
 });
 
 export default function Home() {
 
-
-
-  const services = [
-    {
-      title: 'House Clearance',
-      icon: '🏠',
-      description: 'Complete property clearance services for homes of all sizes. We handle everything from furniture to personal belongings with care and professionalism.'
-    },
-    {
-      title: 'Garden Clearance',
-      icon: '🌿',
-      description: 'Professional garden waste removal and landscaping clearance. We transform overgrown spaces into clean, usable areas.'
-    },
-    {
-      title: 'Loft Clearance',
-      icon: '📦',
-      description: 'Efficient loft and attic clearance with safe disposal. We handle bulky items, old furniture, and decades of accumulated items.'
-    },
-    {
-      title: 'Office Clearance',
-      icon: '🏢',
-      description: 'Commercial clearance services for offices and businesses. Minimal disruption with maximum efficiency.'
-    },
-    {
-      title: 'Storage Clearance',
-      icon: '🔒',
-      description: 'Clear out storage units quickly and efficiently. We help you reclaim your space and stop paying for unused storage.'
-    },
-    {
-      title: 'Hoarder Clearance',
-      icon: '🧹',
-      description: 'Specialized services for hoarding situations with sensitivity. Discreet, non-judgmental support for challenging clearances.'
-    },
-  ];
 
   const testimonials = [
     {
@@ -116,58 +84,81 @@ export default function Home() {
     <main>
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-[#003366] to-[#006699] text-white py-16 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-black opacity-20 z-0"></div>
-        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
-          <motion.div
-            className="md:w-1/2 mb-10 md:mb-0"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              Professional Property <span className="text-[#66CCFF]">Clearance</span> Services
-            </h1>
-            <p className="text-xl mb-8 max-w-lg">
-              Fast, reliable and eco-friendly clearance services across Surrey and London
-            </p>
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <motion.a
-                href="#contact"
-                className="bg-white text-[#003366] hover:bg-[#66CCFF] hover:text-white px-6 py-3 rounded-lg font-bold text-center transition duration-300 shadow-lg hover:shadow-xl"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Get a Free Quote
-              </motion.a>
-              <motion.a
-                href="tel:07538502777"
-                className="border-2 border-white hover:bg-white hover:text-[#003366] px-6 py-3 rounded-lg font-bold text-center transition duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+      {/* Intro Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-30 z-0"
+        src="/intro.mp4"
+      />
 
-                Call: 07538 502777
-              </motion.a>
-            </div>
-            <motion.div
-              className="mt-8 flex items-center bg-white bg-opacity-20 p-4 rounded-lg max-w-md"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black opacity-40 z-0"></div>
+
+      <div className="container mx-auto px-4 flex flex-col md:flex-row items-center relative z-10">
+        {/* Left Content */}
+        <motion.div
+          className="md:w-1/2 mb-10 md:mb-0"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
+          <TypeAnimation
+  sequence={[
+    'Clear Space', 1000,
+    'Professional Property Clearance Services', 2000
+  ]}
+  wrapper="h1"
+  speed={50}
+  className="text-4xl md:text-5xl font-extrabold mb-4 leading-tight text-white"
+  repeat={Infinity}
+/>
+          <p className="text-xl mb-8 max-w-lg">
+            Fast, reliable and eco-friendly clearance services across Surrey and London
+          </p>
+          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+            <motion.a
+              href="#contact"
+              className="bg-white text-[#003366] hover:bg-[#66CCFF] hover:text-white px-6 py-3 rounded-lg font-bold text-center transition duration-300 shadow-lg hover:shadow-xl"
+              whileHover={{ scale: 1.07 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <div className="bg-[#003366] text-white rounded-full p-2 mr-3">
-                <FontAwesomeIcon icon={faCheck} className="text-lg"/>
-              </div>
-              <p className="text-[#003366]">Same-day service available • Free on-site quotes • Licensed waste carriers</p>
-            </motion.div>
-          </motion.div>
+              Get a Free Quote
+            </motion.a>
+            <motion.a
+              href="tel:07538502777"
+              className="border-2 border-white hover:bg-white hover:text-[#003366] px-6 py-3 rounded-lg font-bold text-center transition duration-300"
+              whileHover={{ scale: 1.07 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Call: 07538 502777
+            </motion.a>
+          </div>
           <motion.div
+            className="mt-8 flex items-center bg-white bg-opacity-20 p-4 rounded-lg max-w-md"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+          >
+            <div className="bg-[#003366] text-white rounded-full p-2 mr-3">
+              <FontAwesomeIcon icon={faCheck} className="text-lg" />
+            </div>
+            <p className="text-[#003366]">
+              Same-day service available • Free on-site quotes • Licensed waste carriers
+            </p>
+          </motion.div>
+        </motion.div>
+
+        {/* Right Content */}
+        <motion.div
             className="md:w-1/2 flex justify-center"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="relative">
+            <div className="relative hidden md:block">
               <div className="relative w-full h-80 md:h-96 rounded-xl overflow-hidden shadow-2xl border-4 border-white">
                 <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-full" />
               </div>
@@ -186,14 +177,14 @@ export default function Home() {
               </motion.div>
             </div>
           </motion.div>
-        </div>
-      </section>
+      </div>
+    </section>
 
       {/* Stats Section */}
       <section className="py-12 bg-[#f0f8ff]">
         <div className="container mx-auto px-4">
           <motion.div
-            className="grid grid-cols-2 md:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-4 gap-6"
             variants={container}
             initial="hidden"
             animate="show"
@@ -217,103 +208,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold text-[#003366] mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              Our Services
-            </motion.h2>
-            <div className="w-20 h-1 bg-[#66CCFF] mx-auto mb-6"></div>
-            <motion.p
-              className="text-gray-600 max-w-2xl mx-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            >
-              We offer comprehensive clearance solutions for residential and commercial properties.
-              Our team handles everything with care, efficiency, and environmental responsibility.
-            </motion.p>
-          </div>
-
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                className="bg-[#f0f8ff] rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#003366]/10 flex flex-col"
-                variants={item}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-              >
-                <div className="text-4xl mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold text-[#003366] mb-2">{service.title}</h3>
-                <p className="text-gray-600 mb-4 flex-grow">{service.description}</p>
-                <a href="#contact" className="text-[#006699] font-medium hover:text-[#003366] flex items-center">
-                  Get a quote
-                  <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-                </a>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="py-16 bg-[#f0f8ff]">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold text-[#003366] mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              Our Simple Process
-            </motion.h2>
-            <div className="w-20 h-1 bg-[#66CCFF] mx-auto mb-6"></div>
-            <motion.p
-              className="text-gray-600 max-w-2xl mx-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-            >
-              Getting your space cleared has never been easier. Just follow these simple steps:
-            </motion.p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {[
-              { step: 1, title: 'Contact Us', desc: 'Call or email us with details of your clearance needs' },
-              { step: 2, title: 'Get a Quote', desc: 'We provide a free, no-obligation quote' },
-              { step: 3, title: 'Schedule', desc: 'Choose a convenient date and time for your clearance' },
-              { step: 4, title: 'Clearance Day', desc: 'Our team arrives and clears your space efficiently' }
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                className="text-center p-6 bg-white rounded-xl shadow-sm border border-[#003366]/10"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index, duration: 0.5 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="w-16 h-16 bg-[#003366] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">{step.step}</div>
-                <h3 className="text-xl font-bold text-[#003366] mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ServicesPage />
 
       {/* Coverage Section */}
         <CoverageSection />

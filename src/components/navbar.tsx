@@ -50,14 +50,14 @@ export default function Navbar() {
 
   return (
     <header className="bg-[#003366] text-white sticky top-0 z-[9999] shadow-md">
-      <div className="max-w-screen-xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div className="mx-auto px-4 md:py-4 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center">
           <Link href="/">
             <img
               src="/logo1.png"
               alt="Clear Space Logo"
-              className="w-fit h-27 object-contain"
+              className="w-fit h-16 md:h-27 object-contain"
             />
           </Link>
         </div>
