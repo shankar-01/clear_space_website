@@ -1,90 +1,108 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
-
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [, setOpenSubmenu] = useState<string | null>(null);
-  const [, setIsMobileView] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(false);
 
-  // Resize handling (with safe window check)
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === "undefined") return;
 
-    function handleResize() {
-      setIsMobileView(window.innerWidth < 1024);
-      if (window.innerWidth >= 1024) {
-        setIsMobileMenuOpen(false); // Close mobile menu on desktop
-        setOpenSubmenu(null);
+    const handleResize = () => {
+      const isMobile = window.innerWidth < 1024;
+      setIsMobileView(isMobile);
+      if (!isMobile) {
+        setIsMobileMenuOpen(false);
       }
-    }
+    };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   const isActive = (href: string) =>
-    pathname === href || pathname.startsWith(href + '/');
+    pathname === href || pathname.startsWith(href + "/");
 
-  const firstMenuItems = [
-    // { title: "Home", href: "/" },
-    { title: 'About', href: '/about' },
-  ];
-
-  const secondMenuItems = [
-    { title: 'Services', href: '/services' },
-    { title: 'Pricing', href: '/pricing' },
-    { title: 'FAQs', href: '/faqs' },
-    { title: 'Reviews', href: '/reviews' },
-    { title: 'Gallery', href: '/gallery' },
-    { title: 'Areas', href: '/coverage' },
-    { title: 'Contact', href: '/contact' },
+  const menuItems = [
+    { title: "About", href: "/about" },
+    { title: "Services", href: "/services" },
+    { title: "Pricing", href: "/pricing" },
+    { title: "FAQs", href: "/faqs" },
+    { title: "Reviews", href: "/reviews" },
+    { title: "Gallery", href: "/gallery" },
+    { title: "Areas", href: "/coverage" },
+    { title: "Contact", href: "/contact" },
   ];
 
   return (
-    <header className="bg-[#003366] text-white sticky top-0 z-[9999] shadow-md">
-      <div className="mx-auto px-4 md:py-4 flex justify-between items-center">
+    <header className="bg-[#003366] text-white sticky top-0 z-[9999] shadow-lg">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center relative">
         {/* Logo */}
-        <div className="flex items-center">
+        <motion.div
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.05, 1] }}
+          transition={{ duration: 6, repeat: Infinity }}
+          className="flex items-center"
+        >
           <Link href="/">
             <img
               src="/logo1.png"
               alt="Clear Space Logo"
-              className="w-fit h-16 md:h-27 object-contain"
+              className="h-12 md:h-16 w-auto object-contain"
             />
           </Link>
-        </div>
+        </motion.div>
 
-        {/* Mobile menu button */}
+        {/* Mobile Menu Button */}
         <button
           type="button"
           className="lg:hidden flex items-center gap-2 text-white"
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
         >
-          <span className="font-medium">Menu</span>
-          <i className={`fas ${isMobileMenuOpen ? 'fa-times' : 'fa-bars'}`} />
+          <motion.span
+            initial={{ rotate: 0 }}
+            animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
+            <i className={`fas ${isMobileMenuOpen ? "fa-times" : "fa-bars"} text-xl`} />
+          </motion.span>
         </button>
 
-        {/* Navigation */}
-        <nav
-          className={`${
-            isMobileMenuOpen ? 'block' : 'hidden'
-          } lg:flex flex-col lg:flex-row items-start lg:items-center lg:gap-3 absolute lg:static top-full left-0 w-full lg:w-auto bg-[#003366] lg:bg-transparent p-4 lg:p-0 transition-all duration-300`}
-        >
-          {firstMenuItems.map((item) => (
-            <NavItem key={item.title} item={item} isActive={isActive(item.href)} />
-          ))}
-          {secondMenuItems.map((item) => (
-            <NavItem key={item.title} item={item} isActive={isActive(item.href)} />
-          ))}
+        {/* Nav Items */}
+        <nav className={`lg:flex lg:items-center lg:gap-6 ${isMobileView ? "block" : ""}`}>
+          {isMobileView ? (
+            <AnimatePresence>
+              {isMobileMenuOpen && (
+                <motion.ul
+                  key="mobile-menu"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex flex-col gap-2 mt-4 bg-[#003366] px-2 py-4 rounded-lg shadow-lg"
+                >
+                  {menuItems.map((item) => (
+                    <NavItem key={item.title} item={item} isActive={isActive(item.href)} />
+                  ))}
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          ) : (
+            <ul className="flex gap-6 items-center">
+              {menuItems.map((item) => (
+                <NavItem key={item.title} item={item} isActive={isActive(item.href)} />
+              ))}
+            </ul>
+          )}
         </nav>
       </div>
     </header>
@@ -99,14 +117,14 @@ function NavItem({
   isActive: boolean;
 }) {
   return (
-    <li className="list-none w-full lg:w-auto">
+    <li className="list-none">
       <Link
         href={item.href}
-        className={`block py-2.5 px-3 rounded transition duration-300 w-full
+        className={`block px-4 py-2 rounded-lg text-sm transition-all relative
         ${
           isActive
-            ? 'bg-[#66CCFF] text-black font-semibold'
-            : 'hover:bg-[#66CCFF] hover:text-black'
+            ? "bg-[#66CCFF] text-black font-semibold"
+            : "hover:bg-white/10 hover:text-[#66CCFF]"
         }`}
       >
         {item.title}

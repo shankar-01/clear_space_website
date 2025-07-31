@@ -1,5 +1,8 @@
 "use client";
 
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
 
 const dummyReviews = [
   {
@@ -23,76 +26,78 @@ const dummyReviews = [
     content: `Great service from start to finish. Easy to contact, friendly staff and very efficient.`,
   },
   {
-    name: "Emily Rose",
-    rating: 4,
-    content: `Pretty good overall, just had a slight delay but the team made up for it. Great communication.`,
+    name: "Emily Davis",
+    rating: 5,
+    content: `I was very impressed with the professionalism and attention to detail shown by the staff. They went above and beyond to ensure that everything was done to my satisfaction.`,
   },
   {
-    name: "Mark Johnson",
+    name: "Sophia Wilson",
     rating: 4,
-    content: `Great service from start to finish. Easy to contact, friendly staff and very efficient.`,
-  },
-  {
-    name: "Emily Rose",
-    rating: 4,
-    content: `Pretty good overall, just had a slight delay but the team made up for it. Great communication.`,
-  },
-  {
-    name: "Mark Johnson",
-    rating: 4,
-    content: `Great service from start to finish. Easy to contact, friendly staff and very efficient.`,
-  },
-  {
-    name: "Emily Rose",
-    rating: 4,
-    content: `Pretty good overall, just had a slight delay but the team made up for it. Great communication.`,
-  },
-  {
-    name: "Mark Johnson",
-    rating: 4,
-    content: `Great service from start to finish. Easy to contact, friendly staff and very efficient.`,
+    content: `I was very impressed with the professionalism and attention to detail shown by the staff. They went above and beyond to ensure that everything was done to my satisfaction.`,
   },
 ];
 
 const StarRating = ({ count }: { count: number }) => (
-  <div className="flex space-x-1 text-orange-500 text-xl mt-1 mb-2">
+  <div className="flex space-x-1 text-orange-400 text-xl mt-1">
     {[...Array(count)].map((_, idx) => (
-      <span key={idx}>★</span>
+      <FontAwesomeIcon key={idx} icon={faStar} />
     ))}
   </div>
 );
 
 export default function ReviewsPage() {
   return (
-    <div className="min-h-screen bg-gray-50 py-16 px-6 md:px-20">
-      <h1 className="text-3xl font-bold text-center text-gray-800 mb-12">
-        Customer Reviews
-      </h1>
+    <div className="min-h-screen bg-gradient-to-br from-gray-100 via-gray-50 to-gray-100 py-16 px-6 md:px-20">
+      <div className="max-w-3xl mx-auto text-center mb-12">
+        <h1 className="text-4xl font-extrabold text-[#003366] tracking-wide">
+          What Our Customers Say
+        </h1>
+        <p className="mt-4 text-[#274060] text-lg font-medium">
+          Real feedback from our valued clients
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {dummyReviews.map((review, index) => (
-          <div
+          <motion.div
             key={index}
-            className="bg-white rounded-xl p-6 shadow-xl transition-all duration-300 hover:scale-[1.02]"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 200, damping: 15 }}
+            className="relative bg-white/10 backdrop-blur-md border border-white/30 rounded-2xl p-6 shadow-lg cursor-pointer flex flex-col"
           >
-            <h2 className="text-blue-600 font-medium text-sm mb-2">
-              {review.name}
-            </h2>
-
-            <div className="flex items-center space-x-2">
+            {/* Header: avatar + name + rating */}
+            <div className="flex items-center gap-4 mb-4">
               <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Google_Favicon_2025.svg/120px-Google_Favicon_2025.svg.png"
-                alt="Google"
-                width={20}
-                height={20}
+                src={`https://i.pravatar.cc/80?img=${index + 10}`}
+                alt={`${review.name} avatar`}
+                className="w-16 h-16 rounded-full border-2 border-white/60 object-cover shadow-md flex-shrink-0"
+                loading="lazy"
               />
-              <StarRating count={review.rating} />
+              <div>
+                <h2 className="text-[#003366] text-lg font-semibold">{review.name}</h2>
+                <StarRating count={review.rating} />
+              </div>
             </div>
 
-            <div className="mt-2 text-gray-700 text-sm max-h-40 overflow-y-auto pr-2">
+            {/* Review Content */}
+            <p className="text-[#003366] text-sm max-h-40 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-white/40 scrollbar-track-transparent leading-relaxed">
               {review.content}
-            </div>
-          </div>
+            </p>
+
+            {/* Glass shine effect */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute top-0 left-0 w-full h-full rounded-2xl bg-gradient-to-tr from-white/10 via-white/5 to-white/0"
+              style={{
+                filter: "blur(10px)",
+                mixBlendMode: "screen",
+                zIndex: 0,
+              }}
+            />
+          </motion.div>
         ))}
       </div>
     </div>

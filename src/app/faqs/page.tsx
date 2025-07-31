@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const faqs = [
   {
@@ -26,6 +27,20 @@ const faqs = [
   },
 ];
 
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export default function FAQPage() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
@@ -34,30 +49,60 @@ export default function FAQPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-16 w-full">
-      <h1 className="text-4xl font-bold mb-10 text-gray-800">Frequently Asked Questions</h1>
-      <div className="space-y-4">
+    <div className="max-w-4xl mx-auto py-16 px-6 md:px-0 bg-white rounded-3xl shadow-lg">
+      <h1 className="text-4xl font-extrabold mb-12 text-[#003366] text-center tracking-wide">
+        Frequently Asked Questions
+      </h1>
+
+      <motion.div
+        className="space-y-6"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
         {faqs.map((faq, index) => (
-          <div key={index} className="border-b border-gray-300 pb-4">
+          <motion.div
+            key={index}
+            variants={itemVariants}
+            className="bg-[#003366] rounded-2xl shadow-md overflow-hidden"
+          >
             <button
               onClick={() => toggle(index)}
-              className="flex items-center w-full text-left group"
+              className="flex items-center w-full p-5 focus:outline-none group"
+              aria-expanded={openIndex === index}
+              aria-controls={`faq-answer-${index}`}
+              id={`faq-question-${index}`}
             >
-              <span className="text-white group-hover:bg-blue-800 transition duration-200 mr-3 bg-gray-500 p-1">
+              <span
+                className={`flex items-center justify-center w-8 h-8 rounded-full transition-colors duration-300
+                  ${openIndex === index
+                    ? "bg-[#66CCFF] text-[#003366]"
+                    : "bg-[#274060] text-[#a1b3cc] group-hover:bg-[#1b2a47] group-hover:text-[#66ccff]"
+                }`}
+              >
                 {openIndex === index ? <FaMinus /> : <FaPlus />}
               </span>
-              <span className="text-gray-800 font-medium group-hover:text-blue-800 transition duration-200">
+              <span
+                className={`ml-4 font-semibold text-lg transition-colors duration-300
+                ${openIndex === index ? "text-white" : "text-[#a1b3cc] group-hover:text-white"}`}
+              >
                 {faq.question}
               </span>
             </button>
             {openIndex === index && (
-              <div className="mt-2 text-gray-600 text-sm">
+              <div
+                id={`faq-answer-${index}`}
+                role="region"
+                aria-labelledby={`faq-question-${index}`}
+                className="px-10 pb-6 text-[#cbd5e1] text-base leading-relaxed select-text"
+              >
                 {faq.answer}
               </div>
             )}
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import {
   faFacebookF,
   faInstagram,
   faTwitter,
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import {
   faPhoneAlt,
@@ -95,9 +96,16 @@ export default function Footer() {
                 </a>
               </li>
               <li className="flex items-start gap-3">
+                <FontAwesomeIcon icon={faWhatsapp} className="text-[#66CCFF] mt-1" />
+                <a href="https://wa.me/07538502777" className="hover:text-[#66CCFF] text-base">
+                  WhatsApp
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="text-[#66CCFF] mt-1" />
                 <span className="text-base">Surrey & Greater London Areas</span>
               </li>
+
             </ul>
           </div>
         </div>

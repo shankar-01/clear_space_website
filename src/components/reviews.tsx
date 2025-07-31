@@ -11,7 +11,7 @@ export default function ReviewBanner() {
       {/* Left - Star Reviews */}
       <div className="flex items-center justify-center md:justify-start w-full md:w-1/2">
         <a
-          href="https://www.iclearpropertyservices.co.uk/checkatrade-reviews/"
+          href="/reviews"
           className="flex items-center gap-2 hover:underline"
         >
           <p className="font-semibold">Read our 5★ Reviews</p>
@@ -30,15 +30,15 @@ export default function ReviewBanner() {
       {/* Right - Service Info + Call Now */}
       <div className="flex flex-col sm:flex-row items-center justify-center md:justify-end w-full md:w-1/2 gap-2 sm:gap-4">
         <p className="italic text-center sm:text-left whitespace-nowrap text-[#003366]">
-          Professional clearance in Surrey & London
+          Professional clearance in Surrey & Greater London
         </p>
         <FontAwesomeIcon icon={faTruck} className="text-[#003366] text-[16px]" />
         <a
-          href="tel:07599248448"
+          href="tel:07538502777"
           className="bg-[#003366] text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-[#002244] transition font-medium text-[15px]"
         >
           <FontAwesomeIcon icon={faPhoneAlt} className="text-sm" />
-          <span className="whitespace-nowrap">01372 898 079</span>
+          <span className="whitespace-nowrap">Call Now</span>
         </a>
       </div>
     </div>
