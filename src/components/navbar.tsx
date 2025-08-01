@@ -52,6 +52,32 @@ export default function Navbar() {
     { title: "Contact", href: "/contact", icon: <FaEnvelope /> },
   ];
 
+  const NavItem = ({
+    item,
+    isActive,
+    onClick,
+  }: {
+    item: { title: string; href: string; icon?: React.ReactNode };
+    isActive: boolean;
+    onClick?: () => void;
+  }) => (
+    <li className="list-none">
+      <Link
+        href={item.href}
+        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all relative
+        ${
+          isActive
+            ? "bg-[#66CCFF] text-black font-semibold"
+            : "hover:bg-white/10 hover:text-[#66CCFF]"
+        }`}
+        onClick={onClick}
+      >
+        {item.icon && <span className="text-lg">{item.icon}</span>}
+        {item.title}
+      </Link>
+    </li>
+  );
+
   return (
     <header className="bg-[#003366] text-white sticky top-0 z-[9999] shadow-lg">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center relative">
@@ -75,7 +101,11 @@ export default function Navbar() {
         <nav className="hidden lg:flex lg:items-center lg:gap-6">
           <ul className="flex gap-6 items-center">
             {menuItems.map((item) => (
-              <NavItem key={item.title} item={item} isActive={isActive(item.href)} />
+              <NavItem
+                key={item.title}
+                item={item}
+                isActive={isActive(item.href)}
+              />
             ))}
           </ul>
         </nav>
@@ -93,7 +123,11 @@ export default function Navbar() {
               animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
               transition={{ type: "spring", stiffness: 200 }}
             >
-              <i className={`fas ${isMobileMenuOpen ? "fa-times" : "fa-bars"} text-xl`} />
+              <i
+                className={`fas ${
+                  isMobileMenuOpen ? "fa-times" : "fa-bars"
+                } text-xl`}
+              />
             </motion.span>
           </button>
         </div>
@@ -112,37 +146,17 @@ export default function Navbar() {
           >
             <ul className="flex flex-col gap-2 mt-4 bg-[#003366] px-4 py-4 rounded-lg shadow-lg">
               {menuItems.map((item) => (
-                <NavItem key={item.title} item={item} isActive={isActive(item.href)} />
+                <NavItem
+                  key={item.title}
+                  item={item}
+                  isActive={isActive(item.href)}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                />
               ))}
             </ul>
           </motion.nav>
         )}
       </AnimatePresence>
     </header>
-  );
-}
-
-function NavItem({
-  item,
-  isActive,
-}: {
-  item: { title: string; href: string; icon?: React.ReactNode };
-  isActive: boolean;
-}) {
-  return (
-    <li className="list-none">
-      <Link
-        href={item.href}
-        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all relative
-        ${
-          isActive
-            ? "bg-[#66CCFF] text-black font-semibold"
-            : "hover:bg-white/10 hover:text-[#66CCFF]"
-        }`}
-      >
-        {item.icon && <span className="text-lg">{item.icon}</span>}
-        {item.title}
-      </Link>
-    </li>
   );
 }

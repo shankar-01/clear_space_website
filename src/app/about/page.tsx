@@ -44,17 +44,7 @@ const features = [
   },
 ];
 
-const instaImages = [
-  "https://placehold.co/600x400",
-  "https://placehold.co/600x400",
-  "https://placehold.co/600x400",
-  "https://placehold.co/600x400",
-  "https://placehold.co/600x400",
-  "https://placehold.co/600x400",
-  "https://placehold.co/600x400",
-  "https://placehold.co/600x400",
-];
-
+const instaImages = Array(8).fill("https://placehold.co/600x400");
 
 function TiltCard({ feature }: { feature: (typeof features)[0] }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -84,7 +74,7 @@ function TiltCard({ feature }: { feature: (typeof features)[0] }) {
       onMouseLeave={resetTilt}
       style={{ rotateX, rotateY }}
       className={clsx(
-        "relative rounded-3xl p-7 text-white shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl transform-gpu bg-gradient-to-br",
+        "relative rounded-2xl p-5 text-white shadow-lg overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-2xl transform-gpu bg-gradient-to-br",
         feature.color
       )}
       whileHover={{ scale: 1.05 }}
@@ -97,8 +87,8 @@ function TiltCard({ feature }: { feature: (typeof features)[0] }) {
         <div className="w-full h-full animate-pulse bg-gradient-radial from-white/20 to-transparent opacity-30 blur-2xl rounded-3xl" />
       </div>
       <div className="relative z-10">
-        <h3 className="text-2xl font-bold mb-3">{feature.title}</h3>
-        <p className="text-white/90 leading-relaxed">{feature.description}</p>
+        <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+        <p className="text-white/90 text-sm leading-relaxed">{feature.description}</p>
       </div>
     </motion.div>
   );
@@ -106,18 +96,18 @@ function TiltCard({ feature }: { feature: (typeof features)[0] }) {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#0e1421] text-white px-6 md:px-20 py-16 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-[#0e1421] text-white px-4 sm:px-6 md:px-10 lg:px-20 py-12 max-w-7xl mx-auto">
       {/* Top Image */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.7 }}
-        className="relative w-full h-[320px] md:h-[480px] rounded-3xl overflow-hidden shadow-2xl mb-16 border border-[#334466]"
+        className="w-full h-[220px] sm:h-[300px] md:h-[400px] lg:h-[480px] rounded-3xl overflow-hidden shadow-2xl mb-12 border border-[#334466]"
       >
         <img
           src="https://placehold.co/900x400"
           alt="Clear Space team"
-          className="rounded-3xl w-full object-cover"
+          className="w-full h-full object-cover"
           loading="lazy"
         />
       </motion.div>
@@ -127,31 +117,30 @@ export default function AboutPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="text-5xl md:text-7xl font-extrabold mb-14 text-[#66CCFF]"
+        className="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-10 text-[#66CCFF] text-center"
       >
         About Our Services
       </motion.h1>
 
-      {/* Paragraph and Side Image */}
+      {/* Paragraph + Image */}
       <motion.div
-        className="flex flex-col lg:flex-row justify-between items-center gap-12 mb-20"
+        className="flex flex-col lg:flex-row justify-between items-center gap-10 mb-20"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <p className="text-lg max-w-3xl text-white/90 leading-relaxed">
+        <p className="text-base sm:text-lg max-w-3xl text-white/90 leading-relaxed">
           Welcome to <span className="font-semibold text-[#66CCFF]">Clear Space Property Services</span> – your trusted partner for house, garden, office, and waste clearances in Surrey, London, and the South East. Led by Harry, with 15+ years of experience, we are fully licensed and committed to responsible, efficient service that cares for the environment and your peace of mind.
-          <br />
-          <br />
+          <br /><br />
           Our team delivers expert clearance solutions tailored to your needs — whether it’s a small garden tidy or a full property clearance, we ensure professional, courteous, and hassle-free service every step of the way.
         </p>
 
-        <div className="rounded-3xl shadow-2xl overflow-hidden flex-shrink-0 w-full max-w-md md:max-w-lg border border-[#334466]">
+        <div className="w-full max-w-sm sm:max-w-md md:max-w-lg rounded-3xl shadow-2xl overflow-hidden border border-[#334466]">
           <img
             src="https://placehold.co/600x450"
             alt="Meet Harry"
-            className="rounded-3xl object-cover w-full"
+            className="w-full object-cover h-full"
             loading="lazy"
           />
         </div>
@@ -164,52 +153,47 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-12 text-center text-[#66CCFF]"
+          className="text-3xl sm:text-4xl font-bold mb-10 text-center text-[#66CCFF]"
         >
           Why Choose Us?
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {features.map((feature, i) => (
             <TiltCard key={i} feature={feature} />
           ))}
         </div>
       </section>
 
-      
-
       {/* Instagram Section */}
-      <section className="mt-28">
+      <section className="mt-24">
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-4xl font-bold mb-10 text-center text-[#66CCFF]"
+          className="text-3xl sm:text-4xl font-bold mb-10 text-center text-[#66CCFF]"
         >
           From Our Instagram
         </motion.h2>
 
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 mb-10"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          variants={{
-            visible: { transition: { staggerChildren: 0.1 } },
-            hidden: {},
-          }}
+          variants={{ visible: { transition: { staggerChildren: 0.1 } }, hidden: {} }}
         >
           {instaImages.map((src, idx) => (
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
-              variants={{
-                visible: { opacity: 1, y: 0 },
-                hidden: { opacity: 0, y: 20 },
+              variants={{ visible: { opacity: 1, y: 0 }, hidden: { opacity: 0, y: 20 } }}
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 8px 20px rgba(102,204,255,0.5)",
               }}
-              whileHover={{ scale: 1.05, boxShadow: "0 8px 20px rgba(102,204,255,0.5)" }}
-              className="rounded-3xl overflow-hidden cursor-pointer shadow-md bg-[#12203a]"
+              className="rounded-2xl overflow-hidden cursor-pointer shadow-md bg-[#12203a]"
             >
               <img
                 src={src}
@@ -225,7 +209,7 @@ export default function AboutPage() {
           <Link href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
             <motion.button
               whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-r from-[#1e3c72] to-[#2a5298] text-white px-8 py-3 rounded-full font-semibold text-lg shadow-lg transition-transform duration-300"
+              className="bg-gradient-to-r from-[#1e3c72] to-[#2a5298] text-white px-6 sm:px-8 py-3 rounded-full font-semibold text-base sm:text-lg shadow-lg transition-transform duration-300"
             >
               Follow us on Instagram
             </motion.button>

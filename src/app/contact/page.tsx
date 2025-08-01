@@ -96,7 +96,7 @@ export default function ContactPage() {
                   <div>
                     <p className="font-semibold">Address</p>
                     <p className="text-gray-600 leading-snug">
-                      <strong>CLEAR SPACE</strong> House Clearance<br />
+                      <strong>CLEAR SPACE</strong>House Clearness LTD<br />
                       27 High Street<br />
                       Teddington<br />
                       TW11 8ET
