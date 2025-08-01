@@ -64,11 +64,11 @@ const customIcon = L.icon({
   <div className="lg:w-2/3 bg-white rounded-xl shadow-sm p-4 border border-[#003366]/10 flex-1 flex">
     <div className="w-full h-full rounded-xl overflow-hidden">
       <MapContainer
-        center={[51.3762, -0.3418]}
-        zoom={10}
-        scrollWheelZoom={false}
-        className="w-full h-full"
-      >
+  center={[51.3762, -0.3418]}
+  zoom={10}
+  scrollWheelZoom={false}
+  className="w-full h-[300px] sm:h-[400px] lg:h-full"
+>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
