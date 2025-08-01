@@ -7,7 +7,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import Head from "next/head";
 import ReviewBanner from "@/components/reviews";
 import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import FooterSection from "@/components/footer";
 config.autoAddCss = false;
 
 const geistSans = Geist({
@@ -32,23 +32,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="min-h-screen bg-gray-50">
-      <ReviewBanner />
       <Head>
         <title>Clear Space | Professional Property Clearance Services</title>
         <meta name="description" content="Professional property clearance services across Surrey and London. House clearance, garden clearance, loft clearance and more." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <div className="min-h-screen bg-gray-50">
+      <ReviewBanner />
+      
 
       {/* Header */}
       
           <Navbar />
         
         {children}
-        <Footer />
+        <FooterSection />
     </div>
       </body>
     </html>

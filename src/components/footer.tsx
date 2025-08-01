@@ -13,7 +13,7 @@ import {
   faMapMarkerAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Footer() {
+export default function FooterSection() {
   return (
     <footer className="bg-[#e6f3ff] text-[#003366] py-12">
       <div className="container mx-auto px-4">
@@ -21,7 +21,7 @@ export default function Footer() {
           {/* Logo and Description */}
           <div>
             <div className="flex items-center mb-4">
-              <img src="/logo1.png" alt="Clear Space Logo" className="w-fit h-15 mr-2" />
+              <img src="/logo1.png" alt="Clear Space Logo" className="w-max-30 w-fit h-15 mr-2" />
               <h3 className="text-xl font-bold">Clear Space</h3>
             </div>
             <p className="text-[#003366cc] mb-4 text-sm">
@@ -40,7 +40,7 @@ export default function Footer() {
               </a>
             </div>
           </div>
-
+          
           {/* Services */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Services</h4>
@@ -108,6 +108,7 @@ export default function Footer() {
 
             </ul>
           </div>
+
         </div>
 
         {/* Footer Bottom */}

@@ -76,9 +76,9 @@ export default function PricingSection() {
                                         : 'bg-white'
                                     }`}
                             >
-                                <h3 className="text-xl font-bold">{plan.type}</h3>
+                                <h3 className={`text-xl font-bold text-black ${index === 1 ? 'text-white' : ''}`}>{plan.type}</h3>
                                 <div className="mt-4">
-                                    <span className="text-4xl font-bold">{plan.price}</span>
+                                    <span className={`text-4xl font-bold text-black ${index === 1 ? 'text-white' : ''}`}>{plan.price}</span>
                                     <span
                                         className={`ml-1 ${index === 1 ? 'text-white/80' : 'text-gray-600'
                                             }`}
@@ -86,7 +86,7 @@ export default function PricingSection() {
                                         /load
                                     </span>
                                 </div>
-                                <p className="mt-2">{plan.description}</p>
+                                <p className={`mt-2 text-black ${index === 1 ? 'text-white/80' : ''}`}>{plan.description}</p>
                             </div>
                             <div className="p-6 bg-white">
                                 <ul className="space-y-3 text-gray-700">

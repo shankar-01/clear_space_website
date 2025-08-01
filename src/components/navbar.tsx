@@ -4,6 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  FaInfoCircle,
+  FaConciergeBell,
+  FaDollarSign,
+  FaQuestionCircle,
+  FaStar,
+  FaImages,
+  FaMapMarkerAlt,
+  FaEnvelope,
+} from "react-icons/fa";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -32,14 +42,14 @@ export default function Navbar() {
     pathname === href || pathname.startsWith(href + "/");
 
   const menuItems = [
-    { title: "About", href: "/about" },
-    { title: "Services", href: "/services" },
-    { title: "Pricing", href: "/pricing" },
-    { title: "FAQs", href: "/faqs" },
-    { title: "Reviews", href: "/reviews" },
-    { title: "Gallery", href: "/gallery" },
-    { title: "Areas", href: "/coverage" },
-    { title: "Contact", href: "/contact" },
+    { title: "About", href: "/about", icon: <FaInfoCircle /> },
+    { title: "Services", href: "/services", icon: <FaConciergeBell /> },
+    { title: "Pricing", href: "/pricing", icon: <FaDollarSign /> },
+    { title: "FAQs", href: "/faqs", icon: <FaQuestionCircle /> },
+    { title: "Reviews", href: "/reviews", icon: <FaStar /> },
+    { title: "Gallery", href: "/gallery", icon: <FaImages /> },
+    { title: "Areas", href: "/coverage", icon: <FaMapMarkerAlt /> },
+    { title: "Contact", href: "/contact", icon: <FaEnvelope /> },
   ];
 
   return (
@@ -61,50 +71,53 @@ export default function Navbar() {
           </Link>
         </motion.div>
 
-        {/* Mobile Menu Button */}
-        <button
-          type="button"
-          className="lg:hidden flex items-center gap-2 text-white"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-        >
-          <motion.span
-            initial={{ rotate: 0 }}
-            animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
-            transition={{ type: "spring", stiffness: 200 }}
-          >
-            <i className={`fas ${isMobileMenuOpen ? "fa-times" : "fa-bars"} text-xl`} />
-          </motion.span>
-        </button>
+        {/* Desktop Nav */}
+        <nav className="hidden lg:flex lg:items-center lg:gap-6">
+          <ul className="flex gap-6 items-center">
+            {menuItems.map((item) => (
+              <NavItem key={item.title} item={item} isActive={isActive(item.href)} />
+            ))}
+          </ul>
+        </nav>
 
-        {/* Nav Items */}
-        <nav className={`lg:flex lg:items-center lg:gap-6 ${isMobileView ? "block" : ""}`}>
-          {isMobileView ? (
-            <AnimatePresence>
-              {isMobileMenuOpen && (
-                <motion.ul
-                  key="mobile-menu"
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex flex-col gap-2 mt-4 bg-[#003366] px-2 py-4 rounded-lg shadow-lg"
-                >
-                  {menuItems.map((item) => (
-                    <NavItem key={item.title} item={item} isActive={isActive(item.href)} />
-                  ))}
-                </motion.ul>
-              )}
-            </AnimatePresence>
-          ) : (
-            <ul className="flex gap-6 items-center">
+        {/* Mobile Menu Button */}
+        <div className="lg:hidden">
+          <button
+            type="button"
+            className="flex items-center gap-2 text-white"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+          >
+            <motion.span
+              initial={{ rotate: 0 }}
+              animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
+              transition={{ type: "spring", stiffness: 200 }}
+            >
+              <i className={`fas ${isMobileMenuOpen ? "fa-times" : "fa-bars"} text-xl`} />
+            </motion.span>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Nav Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && isMobileView && (
+          <motion.nav
+            key="mobile-menu"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="lg:hidden px-4"
+          >
+            <ul className="flex flex-col gap-2 mt-4 bg-[#003366] px-4 py-4 rounded-lg shadow-lg">
               {menuItems.map((item) => (
                 <NavItem key={item.title} item={item} isActive={isActive(item.href)} />
               ))}
             </ul>
-          )}
-        </nav>
-      </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
@@ -113,20 +126,21 @@ function NavItem({
   item,
   isActive,
 }: {
-  item: { title: string; href: string };
+  item: { title: string; href: string; icon?: React.ReactNode };
   isActive: boolean;
 }) {
   return (
     <li className="list-none">
       <Link
         href={item.href}
-        className={`block px-4 py-2 rounded-lg text-sm transition-all relative
+        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-all relative
         ${
           isActive
             ? "bg-[#66CCFF] text-black font-semibold"
             : "hover:bg-white/10 hover:text-[#66CCFF]"
         }`}
       >
+        {item.icon && <span className="text-lg">{item.icon}</span>}
         {item.title}
       </Link>
     </li>
