@@ -114,7 +114,7 @@ export default function FooterSection() {
         {/* Footer Bottom */}
         <div className="border-t border-[#66CCFF] mt-10 pt-6 text-center text-sm text-[#00336699]">
           <p>
-            © {new Date().getFullYear()} Clear Space Property Clearance Services. All rights reserved.
+            © {new Date().getFullYear()} Clear Space House Clearness LTD. All rights reserved.
           </p>
           <div className="mt-2 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
             {["Privacy Policy", "Terms of Service", "Cookies", "Licensing"].map((item) => (

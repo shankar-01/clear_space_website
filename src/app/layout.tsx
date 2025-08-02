@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <title>Clear Space | Professional Property Clearance Services</title>
+        <title>Clear Space | House Clearness LTD</title>
         <meta name="description" content="Professional property clearance services across Surrey and London. House clearance, garden clearance, loft clearance and more." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
