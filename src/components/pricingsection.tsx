@@ -2,27 +2,31 @@
 
 import { motion, useAnimation, useInView } from 'framer-motion';
 import { useEffect, useRef } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const pricing = [
     {
-        type: 'Small Clearance',
-        price: '£70 - £100',
-        description: 'Perfect for quick, light removals or single-room clearouts.',
-        features: ['1/4 Load', '2 Person Team', 'Includes labor & disposal'],
+        type: '1/4 Load',
+        weight: 'Example load of 250kg',
+        price: '£205',
+        image: 'https://placehold.co/600x400',
     },
     {
-        type: 'Medium Clearance',
-        price: '£120 - £160',
-        description: 'Ideal for medium house or office clearances.',
-        features: ['1/2 Load', '2 Person Team', 'Labor & responsible disposal'],
+        type: '1/2 Load',
+        weight: 'Example load of 500kg',
+        price: '£305',
+        image: 'https://placehold.co/600x400',
     },
     {
-        type: 'Large Clearance',
-        price: '£250 - £300',
-        description: 'Comprehensive full-house or site clearance.',
-        features: ['Full Load', '2 Person Team', 'Includes heavy lifting & disposal'],
+        type: '3/4 Load',
+        weight: 'Example load of 750kg',
+        price: '£405',
+        image: 'https://placehold.co/600x400',
+    },
+    {
+        type: 'Full Load',
+        weight: 'Example load of 1100kg',
+        price: '£505',
+        image: 'https://placehold.co/600x400',
     },
 ];
 
@@ -50,76 +54,45 @@ export default function PricingSection() {
                     }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-4xl font-bold text-[#003366]">Transparent Pricing</h2>
+                    <h2 className="text-4xl font-bold text-[#003366]">Bulky Waste Clearance Pricing</h2>
                     <div className="w-20 h-1 bg-[#66CCFF] mx-auto my-4"></div>
                     <p className="text-gray-600 max-w-2xl mx-auto">
-                        Clear, upfront pricing with no hidden fees. All prices include labor, transport, and responsible disposal.
+                        For House Clearance services that involve any bulky waste such as DIY clearances or builder waste, we
+                        have specific rates. Charged at £45+VAT per 100kg with a £65+VAT call-out charge. Our max load per truck
+                        is 1100kg. Within a 10 mile radius, each 100kg comes with 10 minutes load time with a 1-person team. Due to
+                        the nature of bulky waste (e.g., DIY, kitchen/bathroom strip-outs), it&apos;s heavier than normal rubbish and
+                        incurs an increased charge.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    {pricing.map((plan, index) => (
+                {/* Pricing Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    {pricing.map((item, index) => (
                         <motion.div
                             key={index}
-                            className={`rounded-xl shadow-lg overflow-hidden ${index === 1
-                                    ? 'transform scale-105 relative z-10 border-2 border-[#66CCFF]'
-                                    : 'border border-[#003366]/20'
-                                }`}
+                            className="bg-white text-center rounded-xl shadow-lg p-6 border-t-4 border-[#4B3BFF]"
                             initial={{ opacity: 0, y: 30 }}
                             animate={inView ? { opacity: 1, y: 0 } : {}}
                             transition={{ delay: 0.2 * index, duration: 0.6 }}
                             whileHover={{ y: -10 }}
                         >
-                            <div
-                                className={`p-6 text-center ${index === 1
-                                        ? 'bg-gradient-to-r from-[#003366] to-[#006699] text-white'
-                                        : 'bg-white'
-                                    }`}
-                            >
-                                <h3 className={`text-xl font-bold text-black ${index === 1 ? 'text-white' : ''}`}>{plan.type}</h3>
-                                <div className="mt-4">
-                                    <span className={`text-4xl font-bold text-black ${index === 1 ? 'text-white' : ''}`}>{plan.price}</span>
-                                    <span
-                                        className={`ml-1 ${index === 1 ? 'text-white/80' : 'text-gray-600'
-                                            }`}
-                                    >
-                                        /load
-                                    </span>
-                                </div>
-                                <p className={`mt-2 text-black ${index === 1 ? 'text-white/80' : ''}`}>{plan.description}</p>
+                            <div className="flex justify-center mb-4">
+                                <img
+                                    src={item.image}
+                                    alt={item.type}
+                                    className="h-28 object-contain"
+                                />
                             </div>
-                            <div className="p-6 bg-white">
-                                <ul className="space-y-3 text-gray-700">
-                                    {plan.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-center">
-                                            <FontAwesomeIcon
-                                                icon={faCheck}
-                                                className="w-5 h-5 text-[#66CCFF] mr-2"
-                                            />
-                                            {feature}
-                                        </li>
-                                    ))}
-                                </ul>
-                                <motion.a
-                                    href={`https://wa.me/07538502777?text=${encodeURIComponent(
-                                        `Hi, I’m interested in your "${plan.type}" plan. Can you provide more details?`
-                                    )}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`mt-6 block text-center py-3 rounded-lg font-bold transition duration-300 ${index === 1
-                                            ? 'bg-white text-[#003366] hover:bg-[#66CCFF]'
-                                            : 'bg-[#003366] hover:bg-[#006699] text-white'
-                                        }`}
-                                    whileHover={{ scale: 1.05 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    Get a Quote
-                                </motion.a>
-                            </div>
+                            <h3 className="text-lg font-semibold text-[#1A1A1A]">{item.type}</h3>
+                            <p className="text-sm text-gray-500">{item.weight}</p>
+                            <p className="text-3xl font-bold text-[#4B3BFF] mt-4">
+                                ~{item.price} <span className="text-base text-gray-600">+VAT</span>
+                            </p>
                         </motion.div>
                     ))}
                 </div>
 
+                {/* Eco Commitment Section */}
                 <motion.div
                     className="mt-16 bg-white rounded-xl shadow-sm p-8 max-w-4xl mx-auto border border-[#003366]/10"
                     initial="hidden"
@@ -143,32 +116,13 @@ export default function PricingSection() {
                         </div>
                         <div className="md:w-2/3 text-gray-600">
                             <p className="mb-4">
-                                At Clear Space, we&apos;re committed to environmentally responsible clearance
-                                practices. We strive to recycle or reuse over 90% of the items we collect,
-                                minimizing landfill waste.
+                                At Clear Space, we&apos;re committed to environmentally responsible clearance practices. We strive
+                                to recycle or reuse over 90% of the items we collect, minimizing landfill waste.
                             </p>
-                            <ul className="space-y-2">
-                                <li className="flex items-start">
-                                    <FontAwesomeIcon
-                                        icon={faCheck}
-                                        className="w-5 h-5 text-[#66CCFF] mr-2"
-                                    />
-                                    <span>Furniture and household items donated to charities</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <FontAwesomeIcon
-                                        icon={faCheck}
-                                        className="w-5 h-5 text-[#66CCFF] mr-2"
-                                    />
-                                    <span>Electronics responsibly recycled</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <FontAwesomeIcon
-                                        icon={faCheck}
-                                        className="w-5 h-5 text-[#66CCFF] mr-2"
-                                    />
-                                    <span>All waste processed at licensed facilities</span>
-                                </li>
+                            <ul className="space-y-2 list-disc pl-5">
+                                <li>Furniture and household items donated to charities</li>
+                                <li>Electronics responsibly recycled</li>
+                                <li>All waste processed at licensed facilities</li>
                             </ul>
                         </div>
                     </div>
