@@ -90,7 +90,7 @@ export default function Navbar() {
         >
           <Link href="/">
             <img
-              src="/logo1.png"
+              src="/logo2.png"
               alt="Clear Space Logo"
               className="h-12 md:h-16 w-auto object-contain"
             />

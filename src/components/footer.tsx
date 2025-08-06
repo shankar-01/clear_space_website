@@ -21,8 +21,8 @@ export default function FooterSection() {
           {/* Logo and Description */}
           <div>
             <div className="flex items-center mb-4">
-              <img src="/logo1.png" alt="Clear Space Logo" className="w-max-30 w-fit h-15 mr-2" />
-              <h3 className="text-xl font-bold">Clear Space</h3>
+              <img src="/logo2.png" alt="Clear Space Logo" className="w-max-30 w-fit h-15 mr-2" />
+              {/* <h3 className="text-xl font-bold">Clear Space</h3> */}
             </div>
             <p className="text-[#003366cc] mb-4 text-sm">
               Professional property clearance services across Surrey and London.
