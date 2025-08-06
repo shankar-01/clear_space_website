@@ -15,8 +15,8 @@ import {
 
 export default function FooterSection() {
   return (
-    <footer className="bg-[#e6f3ff] text-[#003366] py-12">
-      <div className="container mx-auto px-4">
+    <footer className="w-full bg-[#e6f3ff] text-[#003366] py-12">
+      <div className="w-fullcontainer mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Logo and Description */}
           <div>

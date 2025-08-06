@@ -80,7 +80,7 @@ export default function Navbar() {
 
   return (
     <header className="bg-[#003366] text-white sticky top-0 z-[9999] shadow-lg">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center relative">
+      <div className="w-full mx-auto px-4 py-3 flex justify-between items-center relative">
         {/* Logo */}
         <motion.div
           initial={{ scale: 1 }}

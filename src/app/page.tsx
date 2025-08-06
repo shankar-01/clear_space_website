@@ -38,14 +38,14 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-[#003366] to-[#006699] text-white py-16 md:py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-r text-white py-16 md:py-24 overflow-hidden">
         {/* Intro Video Background */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-30 z-0"
+          className="absolute inset-0 w-full h-full object-cover z-0"
           src="/intro.mp4"
         />
 
