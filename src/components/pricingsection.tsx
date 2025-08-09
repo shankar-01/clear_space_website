@@ -5,28 +5,28 @@ import { useEffect, useRef } from 'react';
 
 const pricing = [
     {
-        type: '1/4 Load',
-        weight: 'Example load of 250kg',
+        type: 'Quarter Load',
+        weight: 'Typical load around 250kg',
         price: '£205',
-        image: 'https://placehold.co/600x400',
+        image: '/pricing/quarter.png',
     },
     {
-        type: '1/2 Load',
-        weight: 'Example load of 500kg',
+        type: 'Half Load',
+        weight: 'Typical load around 500kg',
         price: '£305',
-        image: 'https://placehold.co/600x400',
+        image: '/pricing/half.png',
     },
     {
-        type: '3/4 Load',
-        weight: 'Example load of 750kg',
+        type: 'Three-Quarter Load',
+        weight: 'Typical load around 750kg',
         price: '£405',
-        image: 'https://placehold.co/600x400',
+        image: '/pricing/half_quarter.png',
     },
     {
         type: 'Full Load',
-        weight: 'Example load of 1100kg',
+        weight: 'Typical load up to 1100kg',
         price: '£505',
-        image: 'https://placehold.co/600x400',
+        image: '/pricing/full.png',
     },
 ];
 
@@ -54,14 +54,10 @@ export default function PricingSection() {
                     }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-4xl font-bold text-[#003366]">Bulky Waste Clearance Pricing</h2>
+                    <h2 className="text-4xl font-bold text-[#003366]">Affordable Bulky Waste Clearance</h2>
                     <div className="w-20 h-1 bg-[#66CCFF] mx-auto my-4"></div>
                     <p className="text-gray-600 max-w-2xl mx-auto">
-                        For House Clearance services that involve any bulky waste such as DIY clearances or builder waste, we
-                        have specific rates. Charged at £45+VAT per 100kg with a £65+VAT call-out charge. Our max load per truck
-                        is 1100kg. Within a 10 mile radius, each 100kg comes with 10 minutes load time with a 1-person team. Due to
-                        the nature of bulky waste (e.g., DIY, kitchen/bathroom strip-outs), it&apos;s heavier than normal rubbish and
-                        incurs an increased charge.
+                        Our bulky waste clearance services cover everything from DIY projects to builder’s waste. We charge £45 + VAT per 100kg with a £65 + VAT call-out fee. Each truck has a maximum load capacity of 1100kg. Within a 10-mile radius, loading time is estimated at 10 minutes per 100kg with a one-person team. Due to the heavier nature of bulky waste — including kitchen or bathroom strip-outs — prices reflect the additional handling required.
                     </p>
                 </motion.div>
 
@@ -86,7 +82,7 @@ export default function PricingSection() {
                             <h3 className="text-lg font-semibold text-[#1A1A1A]">{item.type}</h3>
                             <p className="text-sm text-gray-500">{item.weight}</p>
                             <p className="text-3xl font-bold text-[#4B3BFF] mt-4">
-                                ~{item.price} <span className="text-base text-gray-600">+VAT</span>
+                                ~{item.price} <span className="text-base text-gray-600">+ VAT</span>
                             </p>
                         </motion.div>
                     ))}
@@ -104,7 +100,7 @@ export default function PricingSection() {
                     transition={{ delay: 0.4, duration: 0.8 }}
                 >
                     <h3 className="text-xl font-bold text-[#003366] mb-4 text-center">
-                        Our Eco-Friendly Commitment
+                        Our Commitment to Sustainability
                     </h3>
                     <div className="flex flex-col md:flex-row items-center">
                         <div className="md:w-1/3 flex justify-center mb-6 md:mb-0">
@@ -116,13 +112,12 @@ export default function PricingSection() {
                         </div>
                         <div className="md:w-2/3 text-gray-600">
                             <p className="mb-4">
-                                At Clear Space, we&apos;re committed to environmentally responsible clearance practices. We strive
-                                to recycle or reuse over 90% of the items we collect, minimizing landfill waste.
+                                At Clear Space, we prioritize eco-friendly waste clearance. Over 90% of collected items are recycled or donated, ensuring minimal landfill impact.
                             </p>
                             <ul className="space-y-2 list-disc pl-5">
-                                <li>Furniture and household items donated to charities</li>
-                                <li>Electronics responsibly recycled</li>
-                                <li>All waste processed at licensed facilities</li>
+                                <li>Furniture and household goods donated to charities</li>
+                                <li>Responsible recycling of electronic equipment</li>
+                                <li>All waste processed at licensed, regulated facilities</li>
                             </ul>
                         </div>
                     </div>

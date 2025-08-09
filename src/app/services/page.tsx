@@ -12,7 +12,8 @@ const services = [
     description:
       "Experience a hassle-free house clearance with Clear Space. Our skilled team expertly handles everything from full house clearouts to targeted areas like sheds, attics, and basements. We also offer sensitive probate property clearances with care and speed.",
     color: "from-[#1e3c72] to-[#2a5298]",
-    image: "https://www.junkhunters.co.uk/wp-content/uploads/2017/09/house-clearance-guide-when-you-move-home.jpg", // house interior cleanup
+    image:
+      "https://www.junkhunters.co.uk/wp-content/uploads/2017/09/house-clearance-guide-when-you-move-home.jpg",
   },
   {
     title: "Garden Clearances",
@@ -20,7 +21,8 @@ const services = [
     description:
       "Clear Space provides licensed garden clearance services tailored to your needs. As Environment Agency-licensed waste carriers, we prioritize eco-friendly disposal methods while efficiently managing both full and partial garden waste removals.",
     color: "from-[#0f2027] to-[#203a43] to-[#2c5364]",
-    image: "https://media.istockphoto.com/id/1033111894/photo/man-collecting-fallen-autumn-leaves-in-the-yard.jpg?s=612x612&w=0&k=20&c=9AVSo3__QnMbtY_y2BKqbhhSMc7kYGlVnl8TSYS8Whk=", // garden tools
+    image:
+      "https://media.istockphoto.com/id/1033111894/photo/man-collecting-fallen-autumn-leaves-in-the-yard.jpg?s=612x612&w=0&k=20&c=9AVSo3__QnMbtY_y2BKqbhhSMc7kYGlVnl8TSYS8Whk=",
   },
   {
     title: "Loft Clearance",
@@ -28,7 +30,8 @@ const services = [
     description:
       "With over 15 years of experience, our trained teams swiftly clear your loft with minimal disruption. We use protective dust sheeting and carefully inspect items before clearance to ensure a thorough, safe service.",
     color: "from-[#2b5876] to-[#4e4376]",
-    image: "https://removerr.co.uk/wp-content/uploads/2024/03/loft-clearance_belfast_ni.jpg", // attic/loft storage
+    image:
+      "https://removerr.co.uk/wp-content/uploads/2024/03/loft-clearance_belfast_ni.jpg",
   },
   {
     title: "Garage Clearance",
@@ -36,7 +39,8 @@ const services = [
     description:
       "Reclaim your garage space with Clear Space. We remove all junk, waste, and unwanted furniture—disposing of everything responsibly. From garden tools to old car parts, we help make your garage functional again.",
     color: "from-[#141e30] to-[#243b55]",
-    image: "https://houseandflatclearance.co.uk/wp-content/uploads/2020/11/garage-clearance-services.jpg", // garage interior
+    image:
+      "https://houseandflatclearance.co.uk/wp-content/uploads/2020/11/garage-clearance-services.jpg",
   },
   {
     title: "Office Clearance",
@@ -44,7 +48,8 @@ const services = [
     description:
       "Clear Space offers fast, efficient office clearance services, removing computers, IT equipment, furniture, carpets, and more. We work flexibly to minimize disruption, handling clearances during or outside work hours.",
     color: "from-[#3a1c71] to-[#d76d77] to-[#ffaf7b]",
-    image: "https://officeoutlet.be/swfiles/files/shutterstock_1531649345-min.jpg?nc=1612536947", // office desks
+    image:
+      "https://officeoutlet.be/swfiles/files/shutterstock_1531649345-min.jpg?nc=1612536947",
   },
   {
     title: "Waste Clearance",
@@ -52,7 +57,8 @@ const services = [
     description:
       "Using advanced equipment, we manage waste clearance for residential and commercial clients alike. Whether routine or specialist hoarder clearance, our flexible scheduling ensures a smooth, hassle-free experience.",
     color: "from-[#232526] to-[#414345]",
-    image: "https://www.fastklean.co.uk/wp-content/uploads/2021/07/Rubbish-Removal-Street.jpg", // waste bins
+    image:
+      "https://www.fastklean.co.uk/wp-content/uploads/2021/07/Rubbish-Removal-Street.jpg",
   },
   {
     title: "Compulsive Hoarding",
@@ -60,7 +66,7 @@ const services = [
     description:
       "We offer sensitive and professional hoarder clearance services. Understanding the complexities involved, Clear Space approaches each case with discretion and respect, assisting families and legal advisers effectively.",
     color: "from-[#5a3f37] to-[#2c7744]",
-    image: "https://www.aifc.com.au/wp-content/uploads/2016/02/hoarding.jpg", // cluttered room
+    image: "https://www.aifc.com.au/wp-content/uploads/2016/02/hoarding.jpg",
   },
   {
     title: "Storage Unit Clearance",
@@ -68,7 +74,8 @@ const services = [
     description:
       "Need fast, efficient storage clearance? Clear Space specializes in quick removals with flexible scheduling and personal attention, helping you declutter and stop paying for unused storage space.",
     color: "from-[#3a1c71] to-[#d76d77] to-[#ffaf7b]",
-    image: "https://www.iclearpropertyservices.co.uk/wp-content/uploads/self-storage-clearances-UK.jpg.webp", // storage boxes
+    image:
+      "https://www.iclearpropertyservices.co.uk/wp-content/uploads/self-storage-clearances-UK.jpg.webp",
   },
   {
     title: "Retirement Home Clearance",
@@ -76,7 +83,7 @@ const services = [
     description:
       "We provide compassionate clearance services for care home rooms and assisted living facilities. From furniture removal to carpets and curtains, Clear Space ensures professional handling with respect for residents and families.",
     color: "from-[#223344] to-[#446688]",
-    image: "https://hellocleaners.co.uk/wp-content/uploads/2022/10/cleaning-for-seniors.jpg", // nursing home room
+    image: "https://hellocleaners.co.uk/wp-content/uploads/2022/10/cleaning-for-seniors.jpg",
   },
 ];
 
@@ -127,7 +134,6 @@ function TiltCard({ service }: { service: (typeof services)[0] }) {
           className="rounded-xl mb-4 w-full max-h-40 object-cover shadow-md"
           loading="lazy"
         />
-        {/* <div className="text-5xl mb-3">{service.icon}</div> */}
         <h3 className="text-xl font-bold mb-2">{service.title}</h3>
         <p className="text-white/90 mb-4">{service.description}</p>
         <a
@@ -194,7 +200,19 @@ export default function ServicesPage() {
             Our simple and streamlined process ensures a smooth, stress-free clearance experience.
           </motion.p>
         </div>
-        <div className="max-w-4xl mx-auto grid gap-8 md:grid-cols-3 text-center">
+
+        <motion.div
+          className="max-w-4xl mx-auto grid gap-8 md:grid-cols-3 text-center"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.3 },
+            },
+          }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
           {[
             {
               step: "1",
@@ -215,17 +233,17 @@ export default function ServicesPage() {
             <motion.div
               key={index}
               className="bg-white text-[#003366] p-6 rounded-2xl shadow-xl"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+              }}
             >
               <div className="text-4xl font-bold text-[#66CCFF] mb-4">{item.step}</div>
               <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
               <p className="text-sm text-gray-700">{item.desc}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
     </div>
   );
