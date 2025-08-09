@@ -44,7 +44,16 @@ const features = [
   },
 ];
 
-const instaImages = Array(8).fill("https://placehold.co/600x400");
+const instaImages = [
+  "https://hospiscare.co.uk/wp-content/uploads/2020/06/House-Clearance-Hero-Image.jpg", // junk removal truck
+  "https://www.hanlonbros.com/cdn/shop/articles/house-clearance-hanlon-bros_x400.jpg?v=1709812830", // recycling
+  "https://houseandofficeclearance.co.uk/wp-content/uploads/2020/07/removals-london.jpg", // waste bins
+  "https://media.istockphoto.com/id/1316432905/photo/cleaning-home.jpg?s=612x612&w=0&k=20&c=7qvIOziMXBAu5RL0yf4lgTbSYXh7vNoOoASLd6QotEs=", // clearing yard
+  "https://wedump4u.co.uk/wp-content/uploads/2023/05/Decluttering-And-Organising_-1024x522.jpg", // workers in vest
+  "https://www.rubbishclearanceherts.co.uk/images/slideshow/slide5.jpeg", // environmental protection
+  "https://sammysclearances.co.uk/wp-content/uploads/2020/06/before-and-after-property-clearance-small.jpg", // rubbish truck side
+  "https://www.birminghamhospice.org.uk/app/uploads/2024/09/House-clearance-2-online-1024x789.jpg", // waste bins again
+];
 
 function TiltCard({ feature }: { feature: (typeof features)[0] }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -105,7 +114,7 @@ export default function AboutPage() {
         className="w-full h-[220px] sm:h-[300px] md:h-[400px] lg:h-[480px] rounded-3xl overflow-hidden shadow-2xl mb-12 border border-[#334466]"
       >
         <img
-          src="https://placehold.co/900x400"
+          src="https://www.usedvending.com/image/2008-e250-mobile-cleaning-van-cleaning-van-texas-2c44300-1p_xl.jpg"
           alt="Clear Space team"
           className="w-full h-full object-cover"
           loading="lazy"
@@ -138,7 +147,7 @@ export default function AboutPage() {
 
         <div className="w-full max-w-sm sm:max-w-md md:max-w-lg rounded-3xl shadow-2xl overflow-hidden border border-[#334466]">
           <img
-            src="https://placehold.co/600x450"
+            src="https://t3.ftcdn.net/jpg/02/43/12/34/360_F_243123463_zTooub557xEWABDLk0jJklDyLSGl2jrr.jpg"
             alt="Meet Harry"
             className="w-full object-cover h-full"
             loading="lazy"
