@@ -1,7 +1,7 @@
 "use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faStar, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import { motion, useMotionValue, useTransform, useSpring, useScroll, useMotionTemplate } from "framer-motion";
+import { motion, useMotionValue, useTransform, useSpring, useScroll } from "framer-motion";
 import { useRef, useState } from "react";
 import clsx from "clsx";
 
