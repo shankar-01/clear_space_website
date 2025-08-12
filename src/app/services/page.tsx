@@ -255,22 +255,69 @@ export default function ServicesPage() {
     offset: ["start end", "end start"]
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
     <div ref={containerRef} className="relative min-h-screen overflow-hidden">
-      {/* Background */}
-      <div className="fixed inset-0 -z-10">
+      {/* Animated Background - Matching Pricing Page */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
         <motion.div
           style={{ y: backgroundY }}
-          className="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-900 to-slate-900"
-        />
+          className="absolute inset-0"
+        >
+          {/* Floating orbs */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full mix-blend-screen opacity-20"
+              animate={{
+                x: [0, 100, 0],
+                y: [0, -50, 0],
+                scale: [1, 1.3, 1],
+              }}
+              transition={{
+                duration: 8 + i * 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: i * 0.5,
+              }}
+              style={{
+                width: `${150 + i * 30}px`,
+                height: `${150 + i * 30}px`,
+                left: `${5 + i * 15}%`,
+                top: `${10 + i * 15}%`,
+                background: [
+                  "linear-gradient(45deg, #3B82F6, #8B5CF6)",
+                  "linear-gradient(45deg, #10B981, #06B6D4)",
+                  "linear-gradient(45deg, #F59E0B, #EF4444)",
+                  "linear-gradient(45deg, #8B5CF6, #EC4899)",
+                  "linear-gradient(45deg, #06B6D4, #10B981)",
+                  "linear-gradient(45deg, #EF4444, #F59E0B)",
+                ][i],
+              }}
+            />
+          ))}
+        </motion.div>
+
+        {/* Grid pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20.5V18H18v2.5h-2.5V22H18v2.5h2V22h2.5v-1.5H20z'/%3E%3C/g%3E%3C/svg%3E")`
+            }}
+          />
+        </div>
       </div>
 
       {/* Hero */}
       <section className="relative py-32 px-4 text-center">
         <div className="max-w-5xl mx-auto">
-          <div className="mb-16">
+          <motion.div
+            style={{ y: textY }}
+            className="mb-16"
+          >
             <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 text-sm text-white mb-6">
               <FontAwesomeIcon icon={faStar} className="mr-2 text-yellow-400" />
               Professional Clearance Services
@@ -290,7 +337,7 @@ export default function ServicesPage() {
               <span className="text-purple-300 font-semibold"> professional, respectful, and efficient </span>
               clearance solutions tailored to your needs.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
