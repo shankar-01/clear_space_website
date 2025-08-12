@@ -140,7 +140,7 @@ export default function AboutPage() {
         transition={{ duration: 0.6 }}
       >
         <p className="text-base sm:text-lg max-w-3xl text-white/90 leading-relaxed">
-          Welcome to <span className="font-semibold text-[#66CCFF]">Clear Space Property Services</span> – your friendly and reliable partner for house, garden, office, and waste clearances across Surrey, London, and the South East. We're a fully licensed team, dedicated to providing responsible, efficient, and eco-friendly clearance solutions that give you peace of mind.
+          Welcome to <span className="font-semibold text-[#66CCFF]">Clear Space Property Services</span> – your friendly and reliable partner for house, garden, office, and waste clearances across Surrey, London, and the South East. We&apos;re a fully licensed team, dedicated to providing responsible, efficient, and eco-friendly clearance solutions that give you peace of mind.
           <br /><br />
           Whether you need a quick garden tidy-up, an office cleared, or a full property clearance, we handle every job with professionalism, care, and attention to detail – making the process simple and stress-free for you.
         </p>
