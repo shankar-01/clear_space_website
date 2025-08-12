@@ -142,7 +142,7 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="lg:hidden px-4"
+            className="lg:hidden px-4 py-2"
           >
             <ul className="flex flex-col gap-2 mt-4 bg-[#003366] px-4 py-4 rounded-lg shadow-lg">
               {menuItems.map((item) => (
