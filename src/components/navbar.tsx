@@ -7,12 +7,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   FaInfoCircle,
   FaConciergeBell,
-  FaDollarSign,
   FaQuestionCircle,
   FaStar,
   FaImages,
   FaMapMarkerAlt,
   FaEnvelope,
+  FaPoundSign,
 } from "react-icons/fa";
 
 export default function Navbar() {
@@ -44,7 +44,7 @@ export default function Navbar() {
   const menuItems = [
     { title: "About", href: "/about", icon: <FaInfoCircle /> },
     { title: "Services", href: "/services", icon: <FaConciergeBell /> },
-    { title: "Pricing", href: "/pricing", icon: <FaDollarSign /> },
+    { title: "Pricing", href: "/pricing", icon: <FaPoundSign /> },
     { title: "FAQs", href: "/faqs", icon: <FaQuestionCircle /> },
     { title: "Reviews", href: "/reviews", icon: <FaStar /> },
     { title: "Gallery", href: "/gallery", icon: <FaImages /> },
@@ -79,15 +79,10 @@ export default function Navbar() {
   );
 
   return (
-    <header className="shiny-navbar text-white sticky top-0 z-[9999] shadow-lg">
+    <header className="text-white sticky top-0 z-[9999] shadow-lg bg-[#003366]">
       <div className="w-full mx-auto px-4 py-3 flex justify-between items-center relative">
         {/* Logo */}
-        <motion.div
-          initial={{ scale: 1 }}
-          animate={{ scale: [1, 1.05, 1] }}
-          transition={{ duration: 6, repeat: Infinity }}
-          className="flex items-center"
-        >
+        <div className="flex items-center">
           <Link href="/">
             <img
               src="/logo_fi.png"
@@ -95,7 +90,7 @@ export default function Navbar() {
               className="h-12 md:h-16 w-auto object-contain"
             />
           </Link>
-        </motion.div>
+        </div>
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex lg:items-center lg:gap-6">
@@ -118,17 +113,9 @@ export default function Navbar() {
             onClick={toggleMobileMenu}
             aria-label="Toggle menu"
           >
-            <motion.span
-              initial={{ rotate: 0 }}
-              animate={{ rotate: isMobileMenuOpen ? 90 : 0 }}
-              transition={{ type: "spring", stiffness: 200 }}
-            >
-              <i
-                className={`fas ${
-                  isMobileMenuOpen ? "fa-times" : "fa-bars"
-                } text-xl`}
-              />
-            </motion.span>
+            <i
+              className={`fas ${isMobileMenuOpen ? "fa-times" : "fa-bars"} text-xl`}
+            />
           </button>
         </div>
       </div>

@@ -328,11 +328,10 @@ export default function PricingSection() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.8 }}
                     >
-                        <span className="bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
+                        <span className="text-white">
                             Affordable
-                        </span>
+                        
                         <br />
-                        <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                             Waste Clearance
                         </span>
                     </motion.h2>
@@ -353,7 +352,7 @@ export default function PricingSection() {
                         transition={{ delay: 0.6, duration: 0.8 }}
                     >
                         Our bulky waste clearance services cover everything from DIY projects to builder &apos;s waste. 
-                        <span className="text-blue-300 font-semibold"> We charge £45 + VAT per 100kg </span>
+                        <span className="font-semibold"> We charge £45 + VAT per 100kg </span>
                         with a £65 + VAT call-out fee. Each truck has a maximum load capacity of 1100kg.
                     </motion.p>
                 </motion.div>
@@ -421,7 +420,7 @@ export default function PricingSection() {
 
                                 <h3 className="text-4xl font-bold text-white mb-6">
                                     Our Commitment to 
-                                    <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent"> Sustainability</span>
+                                    <span> Sustainability</span>
                                 </h3>
                             </div>
 
@@ -454,7 +453,7 @@ export default function PricingSection() {
                                 <div className="space-y-6">
                                     <p className="text-gray-300 text-lg leading-relaxed">
                                         At Clear Space, we prioritize eco-friendly waste clearance. 
-                                        <span className="text-green-300 font-semibold"> Over 90% of collected items </span>
+                                        <span className="font-semibold"> Over 90% of collected items </span>
                                         are recycled or donated, ensuring minimal landfill impact.
                                     </p>
 

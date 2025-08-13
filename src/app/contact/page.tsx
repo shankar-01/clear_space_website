@@ -107,24 +107,20 @@ export default function ContactPage() {
 
               {/* Business Hours */}
               <div className="pt-6">
-                <h4 className="text-xl font-semibold text-[#003366] mb-3">
-                  Business Hours
-                </h4>
-                <div className="space-y-2 text-gray-600 text-sm">
-                  <div className="flex justify-between border-b pb-2">
-                    <span>Monday - Friday</span>
-                    <span className="font-medium">7:00 AM - 9:00 PM</span>
-                  </div>
-                  <div className="flex justify-between border-b pb-2">
-                    <span>Saturday</span>
-                    <span className="font-medium">8:00 AM - 8:00 PM</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sunday</span>
-                    <span className="font-medium">9:00 AM - 6:00 PM</span>
-                  </div>
-                </div>
-              </div>
+  <h4 className="text-xl font-semibold text-[#003366] mb-3">
+    Business Hours
+  </h4>
+  <div className="space-y-2 text-gray-600 text-sm">
+    <div className="flex justify-between border-b pb-2">
+      <span>Monday - Sunday</span>
+      <span className="font-medium">Open 24/7</span>
+    </div>
+  </div>
+  <p className="mt-2 text-gray-500 text-sm">
+    We are always available to assist you, any day, any time.
+  </p>
+</div>
+
             </div>
 
             {/* Contact Form */}
@@ -161,7 +157,11 @@ export default function ContactPage() {
                   <option value="loft">Loft Clearance</option>
                   <option value="office">Office Clearance</option>
                   <option value="storage">Storage Clearance</option>
-                  <option value="hoarder">Hoarder Clearance</option>
+                  <option value="garage">Garage Clearance</option>
+                  <option value="Waste">Waste Clearance</option>
+                  <option value="compulsive">Compulsive Hoarding</option>
+                  <option value="retirement">Retirement Home Clearance</option>
+                  <option value="other">Other</option>
                 </select>
                 <textarea
                   rows={4}

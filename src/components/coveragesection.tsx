@@ -91,7 +91,7 @@ export default function ModernCoverageSection() {
               <MapPin className="w-4 h-4 text-cyan-400" />
               <span className="text-white/90 text-sm font-medium">Our Coverage Network</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black bg-gradient-to-r from-white via-cyan-200 to-purple-200 bg-clip-text text-transparent mb-6 leading-tight">
+            <h2 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
               <span className="text-4xl md:text-6xl">Our Coverage Area</span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto mb-8 rounded-full"></div>

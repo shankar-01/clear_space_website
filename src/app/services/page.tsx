@@ -1,7 +1,7 @@
 "use client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faStar, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import { motion, useMotionValue, useTransform, useSpring, useScroll } from "framer-motion";
+import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef, useState } from "react";
 import clsx from "clsx";
 
@@ -90,33 +90,7 @@ const services = [
 ];
 
 function FloatingCard({ service }: { service: (typeof services)[0] }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-
-  const x = useMotionValue(0.5);
-  const y = useMotionValue(0.5);
-  
-  const rotateX = useSpring(useTransform(y, [0, 1], [15, -15]), { stiffness: 100, damping: 30 });
-  const rotateY = useSpring(useTransform(x, [0, 1], [-15, 15]), { stiffness: 100, damping: 30 });
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
-
-  function handleMouseMove(e: React.MouseEvent) {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
-    const mx = e.clientX - rect.left;
-    const my = e.clientY - rect.top;
-    x.set(mx / rect.width);
-    y.set(my / rect.height);
-  }
-
-  function resetTilt() {
-    x.set(0.5);
-    y.set(0.5);
-  }
+  const [, setIsHovered] = useState(false);
 
   const glowColors = {
     violet: "rgba(139, 92, 246, 0.3)",
@@ -128,30 +102,16 @@ function FloatingCard({ service }: { service: (typeof services)[0] }) {
   };
 
   return (
-    <motion.div
-      ref={ref}
-      style={{ scale, rotateX, rotateY }}
-      onMouseMove={handleMouseMove}
+    <div
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => {
-        resetTilt();
-        setIsHovered(false);
-      }}
+      onMouseLeave={() => setIsHovered(false)}
       className="relative group perspective-1000"
     >
       {/* Glow */}
-      <motion.div
-        className="absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"
+      <div
+        className={`absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700`}
         style={{
           background: `radial-gradient(circle at center, ${glowColors[service.glowColor as keyof typeof glowColors]}, transparent 70%)`
-        }}
-        animate={{
-          scale: isHovered ? [1, 1.05, 1] : 1,
-        }}
-        transition={{
-          duration: 2,
-          repeat: isHovered ? Infinity : 0,
-          ease: "easeInOut"
         }}
       />
 
@@ -161,92 +121,69 @@ function FloatingCard({ service }: { service: (typeof services)[0] }) {
           "relative overflow-hidden rounded-3xl bg-gradient-to-br backdrop-blur-xl border border-white/20 shadow-2xl transform-gpu",
           service.color
         )}
-        whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
+        whileHover={{ scale: 1.02 }}
       >
-        {/* Floating orbs */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(3)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-20 h-20 rounded-full bg-white/10 blur-xl"
-              animate={{
-                x: [0, 50, 0],
-                y: [0, -30, 0],
-                scale: [1, 1.2, 1],
-              }}
-              transition={{
-                duration: 4 + i,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.5,
-              }}
-              style={{
-                left: `${20 + i * 30}%`,
-                top: `${10 + i * 20}%`,
-              }}
-            />
+        {/* Icon & Title */}
+        <div className="flex items-center mb-6 p-8">
+          <motion.div
+            className="text-4xl mr-4 p-3 bg-white/20 rounded-2xl backdrop-blur-sm"
+            whileHover={{ rotate: 360 }}
+            transition={{ duration: 0.6 }}
+          >
+            {service.icon}
+          </motion.div>
+          <div>
+            <h3 className="text-2xl font-bold text-white mb-2">{service.title}</h3>
+            <div className="h-0.5 bg-white/60 rounded-full w-full" />
+          </div>
+        </div>
+
+        {/* Image */}
+        <div className="relative mb-6 px-8">
+          <motion.img
+            src={service.image}
+            alt={service.title}
+            className="w-full h-48 object-cover rounded-2xl shadow-lg"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          />
+          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+            <FontAwesomeIcon icon={faStar} className="mr-1 text-yellow-500" />
+            Premium
+          </div>
+        </div>
+
+        {/* Description */}
+        <p className="text-white/90 mb-6 leading-relaxed px-8">{service.description}</p>
+
+        {/* Features */}
+        <div className="space-y-2 mb-6 px-8">
+          {service.features.map((feature, i) => (
+            <div key={i} className="flex items-center text-white/80">
+              <FontAwesomeIcon icon={faCheckCircle} className="mr-2 text-green-300 text-sm" />
+              <span className="text-sm">{feature}</span>
+            </div>
           ))}
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 p-8">
-          <div className="flex items-center mb-6">
-            <motion.div 
-              className="text-4xl mr-4 p-3 bg-white/20 rounded-2xl backdrop-blur-sm"
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-            >
-              {service.icon}
-            </motion.div>
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-2">{service.title}</h3>
-              <div className="h-0.5 bg-white/60 rounded-full w-full" />
-            </div>
-          </div>
-
-          <div className="relative mb-6">
-            <motion.img
-              src={service.image}
-              alt={service.title}
-              className="w-full h-48 object-cover rounded-2xl shadow-lg"
-              loading="lazy"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-            />
-            <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-              <FontAwesomeIcon icon={faStar} className="mr-1 text-yellow-500" />
-              Premium
-            </div>
-          </div>
-
-          <p className="text-white/90 mb-6 leading-relaxed">{service.description}</p>
-
-          <div className="space-y-2 mb-6">
-            {service.features.map((feature, i) => (
-              <div key={i} className="flex items-center text-white/80">
-                <FontAwesomeIcon icon={faCheckCircle} className="mr-2 text-green-300 text-sm" />
-                <span className="text-sm">{feature}</span>
-              </div>
-            ))}
-          </div>
-
-          <motion.a
-            href="#contact"
-            className="group/cta inline-flex items-center bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Get Quote
-            <FontAwesomeIcon 
-              icon={faArrowRight} 
-              className="ml-2 group-hover/cta:translate-x-1 transition-transform duration-300" 
-            />
-          </motion.a>
-        </div>
+        {/* CTA */}
+        <motion.a
+          href="#contact"
+          className="group/cta inline-flex items-center bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl m-8"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Get Quote
+          <FontAwesomeIcon
+            icon={faArrowRight}
+            className="ml-2 group-hover/cta:translate-x-1 transition-transform duration-300"
+          />
+        </motion.a>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }
+
 
 export default function ServicesPage() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -323,18 +260,16 @@ export default function ServicesPage() {
               Professional Clearance Services
             </div>
 
-            <h2 className="text-6xl md:text-8xl font-black mb-8 leading-tight bg-gradient-to-r from-cyan-200 via-blue-200 to-purple-200 bg-clip-text text-transparent">
+            <h2 className="text-6xl md:text-8xl font-bold mb-4 text-white">
               Expert Services,<br />
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                 Done Right
-              </span>
             </h2>
 
             <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-cyan-400 mx-auto mb-8 rounded-full" />
 
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               From home and garden clearances to office and storage removals — Clear Space delivers 
-              <span className="text-purple-300 font-semibold"> professional, respectful, and efficient </span>
+              <span className="font-semibold"> professional, respectful, and efficient </span>
               clearance solutions tailored to your needs.
             </p>
           </motion.div>

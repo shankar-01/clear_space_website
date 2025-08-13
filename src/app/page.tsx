@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import { FaRecycle, FaSmile, FaClock, FaBoxes, FaShieldAlt, FaLeaf } from 'react-icons/fa';
 import dynamic from "next/dynamic";
-import { TypeAnimation } from 'react-type-animation';
+// import { TypeAnimation } from 'react-type-animation';
 
 // Import components - adjust these paths based on your actual file structure
 import ServicesPage from "./services/page";
@@ -130,7 +130,10 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <TypeAnimation
+                  <p className="text-5xl md:text-7xl font-black leading-tight bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent">
+                  Professional Property Clearance
+                  </p>
+                  {/* <TypeAnimation
                     sequence={[
                       'Transform Your Space', 2000,
                       'Clear Space, Clear Mind', 2000,
@@ -140,7 +143,7 @@ export default function Home() {
                     speed={60}
                     className="text-5xl md:text-7xl font-black leading-tight bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent"
                     repeat={Infinity}
-                  />
+                  /> */}
                 </motion.div>
                 
                 <motion.p
