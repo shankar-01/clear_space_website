@@ -11,7 +11,7 @@ const pricing = [
         weight: 'Typical load around 250kg',
         price: '£205',
         image: '/pricing/quarter.png',
-        color: 'from-emerald-500 to-teal-600',
+        color: 'from-indigo-600 via-blue-600 to-cyan-500',
         glowColor: 'emerald-500/30',
         popular: false,
         features: ['Perfect for small cleanouts', 'Single room clearance', 'Quick service'],
@@ -21,7 +21,7 @@ const pricing = [
         weight: 'Typical load around 500kg',
         price: '£305',
         image: '/pricing/half.png',
-        color: 'from-blue-500 to-indigo-600',
+        color: 'from-indigo-600 via-blue-600 to-cyan-500',
         glowColor: 'blue-500/30',
         popular: true,
         features: ['Most popular choice', 'Multi-room clearance', 'Great value'],
@@ -31,7 +31,7 @@ const pricing = [
         weight: 'Typical load around 750kg',
         price: '£405',
         image: '/pricing/half_quarter.png',
-        color: 'from-purple-500 to-pink-600',
+        color: 'from-indigo-600 via-blue-600 to-cyan-500',
         glowColor: 'purple-500/30',
         popular: false,
         features: ['Large property clearance', 'Commercial projects', 'Bulk disposal'],
@@ -41,7 +41,7 @@ const pricing = [
         weight: 'Typical load up to 1100kg',
         price: '£505',
         image: '/pricing/full.png',
-        color: 'from-orange-500 to-red-600',
+        color: 'from-indigo-600 via-blue-600 to-cyan-500',
         glowColor: 'orange-500/30',
         popular: false,
         features: ['Maximum capacity', 'Complete house clearance', 'Best for large jobs'],
@@ -99,7 +99,7 @@ function PricingCard({ item, index }: { item: typeof pricing[0]; index: number }
 
             {/* Main card */}
             <motion.div
-                className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${item.color} shadow-2xl transform-gpu`}
+                className={`relative overflow-hidden rounded-3xl bg-gradient-to-br ${item.color} shadow-2xl transform-gpu h-full flex flex-col justify-between`}
                 style={{
                     background: isHovered 
                         ? `linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%), linear-gradient(135deg, var(--tw-gradient-stops))`

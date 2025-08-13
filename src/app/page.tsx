@@ -268,6 +268,7 @@ export default function Home() {
                   </div>
 
                   {/* Bottom CTA */}
+                  <a href="#contact">
                   <motion.div
                     className="bg-gradient-to-r from-cyan-500/20 to-blue-500/20 backdrop-blur-sm rounded-xl p-4 border border-cyan-400/30 text-center"
                     whileHover={{ scale: 1.02 }}
@@ -278,6 +279,7 @@ export default function Home() {
                       <FontAwesomeIcon icon={faArrowRight} className="ml-2 text-cyan-400" />
                     </div>
                   </motion.div>
+                  </a>
                 </motion.div>
 
                 {/* Floating Elements */}

@@ -89,17 +89,11 @@ const services = [
   },
 ];
 
+const CARD_COLOR = "from-indigo-600 via-blue-600 to-cyan-500"; // single gradient for all cards
+const CARD_GLOW = "rgba(129, 140, 248, 0.3)"; // subtle glow that contrasts with background
+
 function FloatingCard({ service }: { service: (typeof services)[0] }) {
   const [, setIsHovered] = useState(false);
-
-  const glowColors = {
-    violet: "rgba(139, 92, 246, 0.3)",
-    emerald: "rgba(16, 185, 129, 0.3)",
-    cyan: "rgba(6, 182, 212, 0.3)",
-    orange: "rgba(249, 115, 22, 0.3)",
-    rose: "rgba(244, 63, 94, 0.3)",
-    slate: "rgba(100, 116, 139, 0.3)",
-  };
 
   return (
     <div
@@ -109,9 +103,9 @@ function FloatingCard({ service }: { service: (typeof services)[0] }) {
     >
       {/* Glow */}
       <div
-        className={`absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700`}
+        className="absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"
         style={{
-          background: `radial-gradient(circle at center, ${glowColors[service.glowColor as keyof typeof glowColors]}, transparent 70%)`
+          background: `radial-gradient(circle at center, ${CARD_GLOW}, transparent 70%)`,
         }}
       />
 
@@ -119,12 +113,13 @@ function FloatingCard({ service }: { service: (typeof services)[0] }) {
       <motion.div
         className={clsx(
           "relative overflow-hidden rounded-3xl bg-gradient-to-br backdrop-blur-xl border border-white/20 shadow-2xl transform-gpu",
-          service.color
+          CARD_COLOR,
+          "flex flex-col h-full"
         )}
         whileHover={{ scale: 1.02 }}
       >
         {/* Icon & Title */}
-        <div className="flex items-center mb-6 p-8">
+        <div className="flex items-center mb-4 p-6">
           <motion.div
             className="text-4xl mr-4 p-3 bg-white/20 rounded-2xl backdrop-blur-sm"
             whileHover={{ rotate: 360 }}
@@ -133,35 +128,31 @@ function FloatingCard({ service }: { service: (typeof services)[0] }) {
             {service.icon}
           </motion.div>
           <div>
-            <h3 className="text-2xl font-bold text-white mb-2">{service.title}</h3>
+            <h3 className="text-2xl font-bold text-white mb-1">{service.title}</h3>
             <div className="h-0.5 bg-white/60 rounded-full w-full" />
           </div>
         </div>
 
         {/* Image */}
-        <div className="relative mb-6 px-8">
+        <div className="relative mb-4 px-6">
           <motion.img
             src={service.image}
             alt={service.title}
-            className="w-full h-48 object-cover rounded-2xl shadow-lg"
+            className="w-full h-40 object-cover rounded-2xl shadow-lg"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           />
-          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-gray-800 px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-            <FontAwesomeIcon icon={faStar} className="mr-1 text-yellow-500" />
-            Premium
-          </div>
         </div>
 
         {/* Description */}
-        <p className="text-white/90 mb-6 leading-relaxed px-8">{service.description}</p>
+        <p className="text-white/90 mb-4 leading-relaxed px-6 flex-grow">{service.description}</p>
 
         {/* Features */}
-        <div className="space-y-2 mb-6 px-8">
+        <div className="space-y-1 mb-4 px-6">
           {service.features.map((feature, i) => (
-            <div key={i} className="flex items-center text-white/80">
-              <FontAwesomeIcon icon={faCheckCircle} className="mr-2 text-green-300 text-sm" />
-              <span className="text-sm">{feature}</span>
+            <div key={i} className="flex items-center text-white/80 text-sm">
+              <FontAwesomeIcon icon={faCheckCircle} className="mr-2 text-green-300" />
+              {feature}
             </div>
           ))}
         </div>
@@ -169,7 +160,7 @@ function FloatingCard({ service }: { service: (typeof services)[0] }) {
         {/* CTA */}
         <motion.a
           href="#contact"
-          className="group/cta inline-flex items-center bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl m-8"
+          className="group/cta inline-flex items-center justify-center bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl mx-6 mb-6"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -184,12 +175,11 @@ function FloatingCard({ service }: { service: (typeof services)[0] }) {
   );
 }
 
-
 export default function ServicesPage() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start end", "end start"],
   });
 
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
@@ -197,78 +187,44 @@ export default function ServicesPage() {
 
   return (
     <div ref={containerRef} className="relative min-h-screen overflow-hidden">
-      {/* Animated Background - Matching Pricing Page */}
+      {/* Animated Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
-        <motion.div
-          style={{ y: backgroundY }}
-          className="absolute inset-0"
-        >
-          {/* Floating orbs */}
+        <motion.div style={{ y: backgroundY }} className="absolute inset-0">
           {[...Array(6)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute rounded-full mix-blend-screen opacity-20"
-              animate={{
-                x: [0, 100, 0],
-                y: [0, -50, 0],
-                scale: [1, 1.3, 1],
-              }}
-              transition={{
-                duration: 8 + i * 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: i * 0.5,
-              }}
+              animate={{ x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.3, 1] }}
+              transition={{ duration: 8 + i * 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
               style={{
                 width: `${150 + i * 30}px`,
                 height: `${150 + i * 30}px`,
                 left: `${5 + i * 15}%`,
                 top: `${10 + i * 15}%`,
-                background: [
-                  "linear-gradient(45deg, #3B82F6, #8B5CF6)",
-                  "linear-gradient(45deg, #10B981, #06B6D4)",
-                  "linear-gradient(45deg, #F59E0B, #EF4444)",
-                  "linear-gradient(45deg, #8B5CF6, #EC4899)",
-                  "linear-gradient(45deg, #06B6D4, #10B981)",
-                  "linear-gradient(45deg, #EF4444, #F59E0B)",
-                ][i],
+                background: ["linear-gradient(45deg, #3B82F6, #8B5CF6)"][0],
               }}
             />
           ))}
         </motion.div>
-
-        {/* Grid pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div 
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20.5V18H18v2.5h-2.5V22H18v2.5h2V22h2.5v-1.5H20z'/%3E%3C/g%3E%3C/svg%3E")`
-            }}
-          />
-        </div>
       </div>
 
       {/* Hero */}
       <section className="relative py-32 px-4 text-center">
         <div className="max-w-5xl mx-auto">
-          <motion.div
-            style={{ y: textY }}
-            className="mb-16"
-          >
+          <motion.div style={{ y: textY }} className="mb-16">
             <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 text-sm text-white mb-6">
               <FontAwesomeIcon icon={faStar} className="mr-2 text-yellow-400" />
               Professional Clearance Services
             </div>
 
             <h2 className="text-6xl md:text-8xl font-bold mb-4 text-white">
-              Expert Services,<br />
-                Done Right
+              Expert Services,<br />Done Right
             </h2>
 
             <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-cyan-400 mx-auto mb-8 rounded-full" />
 
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              From home and garden clearances to office and storage removals — Clear Space delivers 
+              From home and garden clearances to office and storage removals — Clear Space delivers
               <span className="font-semibold"> professional, respectful, and efficient </span>
               clearance solutions tailored to your needs.
             </p>
