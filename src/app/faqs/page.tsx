@@ -95,13 +95,13 @@ export default function FAQPage() {
                 }`}></div>
                 
                 {/* Category Badge */}
-                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
+                {/* <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
                   isOpen 
                     ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white' 
                     : 'bg-slate-700 text-slate-300'
                 }`}>
                   {faq.category}
-                </div>
+                </div> */}
 
                 <button
                   onClick={() => toggle(index)}

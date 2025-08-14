@@ -1,4 +1,3 @@
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -8,6 +7,7 @@ import Head from "next/head";
 import ReviewBanner from "@/components/reviews";
 import Navbar from "@/components/navbar";
 import FooterSection from "@/components/footer";
+import FloatingContactButtons from "@/components/floating-contact-buttons";
 config.autoAddCss = false;
 
 const geistSans = Geist({
@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Clear Space | House Clearness LTD",
+  title: "Clear Space | House Clearness LTD",
   description: "Professional property clearance services across Surrey and London. House clearance, garden clearance, loft clearance and more.",
 };
 
@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <title>Clear Space | House Clearness LTD</title>
+        <title>Clear Space | House Clearness LTD</title>
         <meta name="description" content="Professional property clearance services across Surrey and London. House clearance, garden clearance, loft clearance and more." />
         <link rel="icon" href="/favicon.ico" className="bg-black"/>
       </Head>
@@ -41,16 +41,14 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <div className="min-h-screen bg-gray-50">
-      <ReviewBanner />
-      
-
-      {/* Header */}
-      
+          <ReviewBanner />
           <Navbar />
-        
-        {children}
-        <FooterSection />
-    </div>
+          {children}
+          <FooterSection />
+          
+          {/* Floating Contact Buttons */}
+          <FloatingContactButtons />
+        </div>
       </body>
     </html>
   );
