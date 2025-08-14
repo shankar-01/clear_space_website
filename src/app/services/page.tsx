@@ -79,7 +79,7 @@ const services = [
     image: "https://www.iclearpropertyservices.co.uk/wp-content/uploads/self-storage-clearances-UK.jpg.webp",
   },
   {
-    title: "Retirement Home Clearance",
+    title: "Care Home Clearance",
     icon: "🏥",
     description: "We provide compassionate clearance services for care home rooms and assisted living facilities. From furniture removal to carpets and curtains.",
     features: ["Compassionate service", "Care home specialist", "Respectful handling"],

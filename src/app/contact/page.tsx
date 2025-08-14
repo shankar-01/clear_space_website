@@ -160,7 +160,7 @@ export default function ContactPage() {
                   <option value="garage">Garage Clearance</option>
                   <option value="Waste">Waste Clearance</option>
                   <option value="compulsive">Compulsive Hoarding</option>
-                  <option value="retirement">Retirement Home Clearance</option>
+                  <option value="care">Care Home Clearance</option>
                   <option value="other">Other</option>
                 </select>
                 <textarea
