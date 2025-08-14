@@ -218,8 +218,9 @@ export default function FooterSection() {
               </ul>
             </div>
             
-            <div>
-              <img src="/enviroment_agency.png" alt="Environment Agency Logo" className="mr-2" />
+            <div className="flex flex-col gap-4 items-center">
+              <img src="/enviroment_agency.png" alt="Environment Agency Logo" className="mr-2 rounded-md" />
+              <img src="/checka.png" alt="Checka Logo" className="mr-2 rounded-md" />
             </div>
           </div>
 
