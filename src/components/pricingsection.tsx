@@ -5,46 +5,65 @@ import { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle, faStar, faLeaf, faRecycle, faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const pricing = [
-    {
-        type: 'Quarter Load',
-        weight: 'Typical load around 250kg',
-        price: '£205',
-        image: '/pricing/quarter.png',
+const pricing = [   {
+        type: 'Small Single Item',
+        weight: 'e.g. Oven',
+        price: '£35-£50',
+        image: '/price/single_item.png',
         color: 'from-indigo-600 via-blue-600 to-cyan-500',
         glowColor: 'emerald-500/30',
         popular: false,
-        features: ['Perfect for small cleanouts', 'Single room clearance', 'Quick service'],
+        features: ['£35 within 5 miles', '£50 within 10 miles', 'Perfect for appliances'],
     },
     {
-        type: 'Half Load',
-        weight: 'Typical load around 500kg',
-        price: '£305',
-        image: '/pricing/half.png',
-        color: 'from-indigo-600 via-blue-600 to-cyan-500',
-        glowColor: 'blue-500/30',
-        popular: true,
-        features: ['Most popular choice', 'Multi-room clearance', 'Great value'],
-    },
-    {
-        type: 'Three-Quarter Load',
-        weight: 'Typical load around 750kg',
-        price: '£405',
-        image: '/pricing/half_quarter.png',
+        type: 'Large Single Item',
+        weight: 'e.g. Sofa - Any distance',
+        price: '£70',
+        image: '/price/lg_single_item.png',
         color: 'from-indigo-600 via-blue-600 to-cyan-500',
         glowColor: 'purple-500/30',
         popular: false,
-        features: ['Large property clearance', 'Commercial projects', 'Bulk disposal'],
+        features: ['Furniture collection', 'Professional handling', 'Any location coverage'],
     },
     {
-        type: 'Full Load',
-        weight: 'Typical load up to 1100kg',
-        price: '£505',
-        image: '/pricing/full.png',
+        type: 'X-Small Clearance',
+        weight: '1/4 Load - 1 to 2 Person Team',
+        price: '£120',
+        image: '/price/xs_clearance.png',
         color: 'from-indigo-600 via-blue-600 to-cyan-500',
         glowColor: 'orange-500/30',
         popular: false,
-        features: ['Maximum capacity', 'Complete house clearance', 'Best for large jobs'],
+        features: ['Small room clearance', 'Flexible team size', 'Quick turnaround'],
+    },
+    {
+        type: 'Small Clearance',
+        weight: '1/2 Load - 1 to 2 Person Team',
+        price: '£225',
+        image: '/price/sm_clearance.png',
+        color: 'from-indigo-600 via-blue-600 to-cyan-500',
+        glowColor: 'blue-500/30',
+        popular: true,
+        features: ['Multi-room clearance', 'Most popular choice', 'Professional team'],
+    },
+    {
+        type: 'Medium Clearance',
+        weight: '3/4 Load - 2 Person Team',
+        price: '£350',
+        image: '/price/md_clearance.png',
+        color: 'from-indigo-600 via-blue-600 to-cyan-500',
+        glowColor: 'cyan-500/30',
+        popular: false,
+        features: ['Large property clearance', 'Dedicated 2-person team', 'Comprehensive service'],
+    },
+    {
+        type: 'Large Clearance',
+        weight: 'Full Load - 2-3 Person Team',
+        price: '£500',
+        image: '/price/lg_clearance.png',
+        color: 'from-indigo-600 via-blue-600 to-cyan-500',
+        glowColor: 'rose-500/30',
+        popular: false,
+        features: ['Complete house clearance', 'Large dedicated team', 'Maximum capacity service'],
     },
 ];
 
@@ -358,7 +377,7 @@ export default function PricingSection() {
                 </motion.div>
 
                 {/* Pricing Cards Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto mb-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-20">
                     {pricing.map((item, index) => (
                         <PricingCard key={index} item={item} index={index} />
                     ))}

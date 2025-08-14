@@ -10,7 +10,7 @@ import {
 import L from 'leaflet';
 import { motion } from 'framer-motion';
 import 'leaflet/dist/leaflet.css';
-
+import { officeLocations } from './officeLocations';
 // Fix Leaflet marker icon issue
 const defaultIcon = L.icon({
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
@@ -23,23 +23,6 @@ const defaultIcon = L.icon({
 });
 
 L.Marker.prototype.options.icon = defaultIcon;
-
-const officeLocations = [
-  { name: "Guildford Office", address: "Guildford, Surrey, UK", lat: 51.2362, lng: -0.5728 },
-  { name: "Windsor Office", address: "Windsor, Berkshire, UK", lat: 51.4820, lng: -0.6043 },
-  { name: "Croydon Office", address: "Croydon, London, UK", lat: 51.3721, lng: -0.0982 },
-  { name: "Staines Office", address: "Staines-upon-Thames, Surrey, UK", lat: 51.4333, lng: -0.5051 },
-  { name: "Clapham Junction Office", address: "Clapham Junction, London, UK", lat: 51.4645, lng: -0.1705 },
-  { name: "Tooting Broadway Office", address: "Tooting Broadway, London, UK", lat: 51.4280, lng: -0.1576 },
-  { name: "Wimbledon Office", address: "Wimbledon, London, UK", lat: 51.4215, lng: -0.2100 },
-  { name: "Cobham Office", address: "Cobham, Surrey, UK", lat: 51.3120, lng: -0.3950 },
-  { name: "Oxshott Office", address: "Oxshott, Surrey, UK", lat: 51.3270, lng: -0.3500 },
-  { name: "Ashtead Office", address: "Ashtead, Surrey, UK", lat: 51.3079, lng: -0.2900 },
-  { name: "Epsom Office", address: "Epsom, Surrey, UK", lat: 51.3347, lng: -0.2705 },
-  { name: "Weybridge Office", address: "Weybridge, Surrey, UK", lat: 51.3750, lng: -0.4440 },
-  { name: "Esher Office", address: "Esher, Surrey, UK", lat: 51.3710, lng: -0.3200 },
-  { name: "Walton‑on‑Thames Office", address: "Walton‑on‑Thames, Surrey, UK", lat: 51.3857, lng: -0.4198 },
-];
 
 export default function CoverageMap() {
   const [, setWidth] = useState(0);
@@ -101,7 +84,7 @@ export default function CoverageMap() {
           <motion.div
             key={index}
             whileHover={{ scale: 1.03 }}
-            className="bg-white rounded-xl border shadow-md p-6 transition-all duration-300"
+            className="bg-white rounded-xl border shadow-md p-4 transition-all duration-300"
           >
             <h3 className="text-xl font-semibold text-gray-800 mb-2">
               {office.name}

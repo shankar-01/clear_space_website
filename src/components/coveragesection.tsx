@@ -1,13 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { MapPin, ArrowRight, Calendar } from "lucide-react";
+import { MapPin} from "lucide-react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
+import { motion, useTransform, useScroll } from "framer-motion";
+import {officeLocations} from "./officeLocations";
+import { areas } from "./area";
 
-const areas = [
-  { name: "London", count: 4, color: "from-purple-500 to-pink-500" },
-  { name: "Surrey", count: 9, color: "from-blue-500 to-cyan-500" },
-  { name: "Berkshire", count: 1, color: "from-emerald-500 to-teal-500" },
-];
 
 const defaultIcon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
@@ -19,22 +17,10 @@ const defaultIcon = L.icon({
   shadowSize: [41, 41],
 });
 
-const officeLocations = [
-  { name: "Guildford Office", address: "Guildford, Surrey, UK", lat: 51.2362, lng: -0.5728 },
-  { name: "Windsor Office", address: "Windsor, Berkshire, UK", lat: 51.482, lng: -0.6043 },
-  { name: "Croydon Office", address: "Croydon, London, UK", lat: 51.3721, lng: -0.0982 },
-  { name: "Staines Office", address: "Staines-upon-Thames, Surrey, UK", lat: 51.4333, lng: -0.5051 },
-  { name: "Clapham Junction Office", address: "Clapham Junction, London, UK", lat: 51.4645, lng: -0.1705 },
-  { name: "Tooting Broadway Office", address: "Tooting Broadway, London, UK", lat: 51.428, lng: -0.1576 },
-  { name: "Wimbledon Office", address: "Wimbledon, London, UK", lat: 51.4215, lng: -0.21 },
-  { name: "Cobham Office", address: "Cobham, Surrey, UK", lat: 51.312, lng: -0.395 },
-  { name: "Oxshott Office", address: "Oxshott, Surrey, UK", lat: 51.327, lng: -0.35 },
-  { name: "Ashtead Office", address: "Ashtead, Surrey, UK", lat: 51.3079, lng: -0.29 },
-  { name: "Epsom Office", address: "Epsom, Surrey, UK", lat: 51.3347, lng: -0.2705 },
-  { name: "Weybridge Office", address: "Weybridge, Surrey, UK", lat: 51.375, lng: -0.444 },
-  { name: "Esher Office", address: "Esher, Surrey, UK", lat: 51.371, lng: -0.32 },
-  { name: "Walton-on-Thames Office", address: "Walton-on-Thames, Surrey, UK", lat: 51.3857, lng: -0.4198 },
-];
+
+// Consistent card styling from services page
+const CARD_COLOR = "from-indigo-600 via-blue-600 to-cyan-500";
+const CARD_GLOW = "rgba(129, 140, 248, 0.3)";
 
 export default function ModernCoverageSection() {
   const [visibleCount, setVisibleCount] = useState(0);
@@ -42,6 +28,15 @@ export default function ModernCoverageSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [, setHoveredArea] = useState(0);
   const sectionRef = useRef(null);
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
@@ -81,115 +76,229 @@ export default function ModernCoverageSection() {
   }, [isVisible]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900/20 to-slate-900 overflow-hidden">
-      <div className="relative z-10 container mx-auto px-4 py-20">
-        
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-6 py-2 mb-6 border border-white/20">
-              <MapPin className="w-4 h-4 text-cyan-400" />
-              <span className="text-white/90 text-sm font-medium">Our Coverage Network</span>
-            </div>
-            <h2 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
-              <span className="text-4xl md:text-6xl">Our Coverage Area</span>
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-purple-500 mx-auto mb-8 rounded-full"></div>
-          </div>
-        </div>
-
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-5 gap-8 items-start">
-          
-          {/* Leaflet Map Area */}
-          <div className={`lg:col-span-3 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-            <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/30 to-purple-500/30 rounded-3xl blur-2xl group-hover:blur-3xl transition-all duration-700"></div>
-              <div className="relative bg-white/10 backdrop-blur-2xl rounded-3xl p-8 border border-white/20">
-                <h3 className="text-2xl font-bold text-white mb-6">Live Coverage Map</h3>
-                
-                <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden border border-white/10">
-                  <MapContainer
-                    center={[51.3762, -0.3418]}
-                    zoom={10}
-                    scrollWheelZoom={false}
-                    className="w-full h-full"
-                  >
-                    <TileLayer
-                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
-                    />
-                    {officeLocations.slice(0, visibleCount).map((location, index) => (
-                      <Marker
-                        key={index}
-                        position={[location.lat, location.lng]}
-                        icon={defaultIcon}
-                      >
-                        <Popup>
-                          <strong>{location.name}</strong><br />
-                          {location.address}
-                        </Popup>
-                      </Marker>
-                    ))}
-                  </MapContainer>
-                </div>
-
-                <div className="mt-6 text-center">
-                  <div className="text-white/60 text-sm mb-2">Offices Deployed</div>
-                  <div className="text-3xl font-bold text-white">{visibleCount} / {officeLocations.length}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Sidebar */}
-          <div className={`lg:col-span-2 space-y-6 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-            <div className="relative group">
-              <div className="relative bg-white/10 backdrop-blur-2xl rounded-3xl p-8 border border-white/20">
-                <h3 className="text-2xl font-bold text-white mb-6">Coverage Stats</h3>
-                {areas.map((area, idx) => (
-                  <div key={idx} onMouseEnter={() => setHoveredArea(idx)} onMouseLeave={() => setHoveredArea(0)}>
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-white">{area.name}</span>
-                      <span className={`text-3xl font-black bg-gradient-to-r ${area.color} bg-clip-text text-transparent`}>
-                        {animatedCounts[idx]}
-                      </span>
-                    </div>
-                    <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full bg-gradient-to-r ${area.color} rounded-full`}
-                        style={{ width: `${(animatedCounts[idx] / Math.max(...areas.map(a => a.count))) * 100}%` }}
-                      ></div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA */}
-            <div className="relative group">
-              <div className="relative bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-2xl rounded-3xl p-8 border border-white/20">
-                <Calendar className="w-8 h-8 text-cyan-400 mb-4" />
-                <h3 className="text-2xl font-bold text-white mb-3">Free Assessment</h3>
-                <p className="text-white/70 mb-6">Get your personalized clearance quote with our AI-powered tool.</p>
-                <button className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-4 px-6 rounded-xl">
-                  <div className="flex items-center justify-center gap-2">
-                    <span>Request Quote Now</span>
-                    <ArrowRight className="w-5 h-5" />
-                  </div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div ref={containerRef} className="relative min-h-screen overflow-hidden">
+      {/* Animated Background - Same as services page */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
+        <motion.div style={{ y: backgroundY }} className="absolute inset-0">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full mix-blend-screen opacity-20"
+              animate={{ x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.3, 1] }}
+              transition={{ duration: 8 + i * 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
+              style={{
+                width: `${150 + i * 30}px`,
+                height: `${150 + i * 30}px`,
+                left: `${5 + i * 15}%`,
+                top: `${10 + i * 15}%`,
+                background: "linear-gradient(45deg, #3B82F6, #8B5CF6)",
+              }}
+            />
+          ))}
+        </motion.div>
       </div>
 
-      <style jsx>{`
-        .leaflet-container {
-          width: 100% !important;
-          height: 100% !important;
-        }
-      `}</style>
-    </section>
+      <section ref={sectionRef} className="relative py-20 px-4">
+        <div className="container mx-auto">
+          
+          {/* Header */}
+          <div className="text-center mb-16">
+            <motion.div 
+              style={{ y: textY }} 
+              className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            >
+              <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 text-sm text-white mb-6">
+                <MapPin className="w-4 h-4 text-cyan-400 mr-2" />
+                Our Coverage Network
+              </div>
+              <h2 className="text-6xl md:text-8xl font-bold mb-4 text-white">
+                Coverage Area
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-cyan-400 mx-auto mb-8 rounded-full" />
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                Serving London, Surrey, and Berkshire with 
+                <span className="font-semibold"> professional clearance services </span>
+                across 14+ strategic locations.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Main Content Grid */}
+          <div className="flex lg:flex-row gap-8 items-stretch">
+            
+            {/* Map Card */}
+            <div className={`flex-1 h-full lg:w-3/4 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+              <div className="relative group perspective-1000">
+                {/* Glow Effect */}
+                <div
+                  className="absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"
+                  style={{
+                    background: `radial-gradient(circle at center, ${CARD_GLOW}, transparent 70%)`,
+                  }}
+                />
+
+                {/* Main Card */}
+                <motion.div
+                  className={`relative overflow-hidden rounded-3xl bg-gradient-to-br backdrop-blur-xl border border-white/20 shadow-2xl ${CARD_COLOR} p-8`}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="flex items-center mb-6">
+                    <motion.div
+                      className="text-3xl mr-4 p-3 bg-white/20 rounded-2xl backdrop-blur-sm"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      🗺️
+                    </motion.div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-1">Live Coverage Map</h3>
+                      <div className="h-0.5 bg-white/60 rounded-full w-full" />
+                    </div>
+                  </div>
+                  
+                  <div className="relative w-full h-[300px] sm:h-[400px] lg:h-[500px] rounded-2xl overflow-hidden border border-white/10 mb-6">
+                    <MapContainer
+                      center={[51.3762, -0.3418]}
+                      zoom={10}
+                      scrollWheelZoom={false}
+                      className="w-full h-full"
+                    >
+                      <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a>'
+                      />
+                      {officeLocations.slice(0, visibleCount).map((location, index) => (
+                        <Marker
+                          key={index}
+                          position={[location.lat, location.lng]}
+                          icon={defaultIcon}
+                        >
+                          <Popup>
+                            <strong>{location.name}</strong><br />
+                            {location.address}
+                          </Popup>
+                        </Marker>
+                      ))}
+                    </MapContainer>
+                  </div>
+
+                  <div className="text-center">
+                    <div className="text-white/80 text-sm mb-2">Offices Deployed</div>
+                    <div className="text-3xl font-bold text-white">{visibleCount} / {officeLocations.length}</div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Sidebar Cards */}
+            <div className={`h-full lg:w-1/4 space-y-8 transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+              
+              {/* Coverage Stats Card */}
+              <div className="relative group perspective-1000">
+                {/* Glow Effect */}
+                <div
+                  className="absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"
+                  style={{
+                    background: `radial-gradient(circle at center, ${CARD_GLOW}, transparent 70%)`,
+                  }}
+                />
+
+                {/* Main Card */}
+                <motion.div
+                  className={`relative overflow-hidden rounded-3xl bg-gradient-to-br backdrop-blur-xl border border-white/20 shadow-2xl ${CARD_COLOR} p-8`}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="flex items-center mb-6">
+                    <motion.div
+                      className="text-3xl mr-4 p-3 bg-white/20 rounded-2xl backdrop-blur-sm"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      📊
+                    </motion.div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-1">Coverage Stats</h3>
+                      <div className="h-0.5 bg-white/60 rounded-full w-full" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    {areas.map((area, idx) => (
+                      <div key={idx} onMouseEnter={() => setHoveredArea(idx)} onMouseLeave={() => setHoveredArea(0)}>
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-white/90">{area.area}</span>
+                          <span className={`text-2xl font-black bg-gradient-to-r ${area.color} bg-clip-text text-transparent`}>
+                            {animatedCounts[idx]}
+                          </span>
+                        </div>
+                        <div className="h-2 bg-white/20 rounded-full overflow-hidden">
+                          <motion.div
+                            className={`h-full bg-gradient-to-r ${area.color} rounded-full`}
+                            initial={{ width: 0 }}
+                            animate={{ width: `${(animatedCounts[idx] / Math.max(...areas.map(a => a.count))) * 100}%` }}
+                            transition={{ duration: 1, ease: "easeOut" }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* CTA Card */}
+              <div className="relative group perspective-1000">
+                {/* Glow Effect */}
+                <div
+                  className="absolute -inset-1 rounded-3xl opacity-0 group-hover:opacity-100 blur-xl transition-all duration-700"
+                  style={{
+                    background: `radial-gradient(circle at center, ${CARD_GLOW}, transparent 70%)`,
+                  }}
+                />
+
+                {/* Main Card */}
+                {/* <motion.div
+                  className={`relative overflow-hidden rounded-3xl bg-gradient-to-br backdrop-blur-xl border border-white/20 shadow-2xl ${CARD_COLOR} p-8`}
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <div className="flex items-center mb-4">
+                    <motion.div
+                      className="text-3xl mr-4 p-3 bg-white/20 rounded-2xl backdrop-blur-sm"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      📅
+                    </motion.div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white mb-1">Free Assessment</h3>
+                      <div className="h-0.5 bg-white/60 rounded-full w-full" />
+                    </div>
+                  </div>
+
+                  <p className="text-white/90 mb-6 leading-relaxed">
+                    Get your personalized clearance quote with our AI-powered assessment tool.
+                  </p>
+
+                  <motion.button
+                    className="group/cta w-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white px-6 py-4 rounded-full font-semibold transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Request Quote Now
+                    <ArrowRight className="w-5 h-5 group-hover/cta:translate-x-1 transition-transform duration-300" />
+                  </motion.button>
+                </motion.div> */}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <style jsx>{`
+          .leaflet-container {
+            width: 100% !important;
+            height: 100% !important;
+          }
+        `}</style>
+      </section>
+    </div>
   );
 }

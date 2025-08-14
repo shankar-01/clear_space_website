@@ -55,13 +55,13 @@ export default function FAQPage() {
         {/* Header Section */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6 shadow-lg"
-               style={{ backgroundColor: '#334155' }}>
+               style={{ backgroundColor: '#003366' }}>
             <HelpCircle className="w-10 h-10 text-white" />
           </div>
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-5xl font-bold bg-[#003366] bg-clip-text text-transparent mb-4">
             Frequently Asked Questions
           </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-[#003366] max-w-2xl mx-auto leading-relaxed">
             Get instant answers to common questions about our house clearance services
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-500 mx-auto mt-6 rounded-full"></div>
@@ -79,12 +79,12 @@ export default function FAQPage() {
                 key={faq.id}
                 className={`group relative overflow-hidden rounded-2xl transition-all duration-300 ${
                   isOpen 
-                    ? 'bg-navy-900 shadow-2xl scale-[1.02] border border-navy-700' 
-                    : 'bg-navy-800 shadow-lg hover:shadow-xl border border-navy-700/50 hover:border-navy-600'
+                    ? 'bg-[#003366] shadow-2xl scale-[1.02] border border-navy-700' 
+                    : 'bg-[#003366] shadow-lg hover:shadow-xl border border-navy-700/50 hover:border-navy-600'
                 }`}
                 style={{
-                  backgroundColor: isOpen ? '#1e293b' : '#334155',
-                  borderColor: isOpen ? '#475569' : '#475569'
+                  backgroundColor: '#003366',
+                  borderColor: '#003366',
                 }}
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -114,8 +114,8 @@ export default function FAQPage() {
                     {/* Icon */}
                     <div className={`flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 ${
                       isOpen 
-                        ? 'bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg' 
-                        : 'bg-slate-600 text-slate-300 group-hover:bg-blue-600 group-hover:text-white'
+                        ? 'bg-blue-600 text-white shadow-lg' 
+                        : 'bg-[#003366] text-slate-300 group-hover:bg-blue-600 group-hover:text-white'
                     }`}>
                       <IconComponent className="w-6 h-6" />
                     </div>
@@ -135,7 +135,7 @@ export default function FAQPage() {
                     <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
                       isOpen 
                         ? 'bg-blue-500 text-white rotate-180 shadow-lg' 
-                        : 'bg-slate-600 text-slate-300 group-hover:bg-blue-500 group-hover:text-white'
+                        : 'bg-[#003366] text-slate-300 group-hover:bg-blue-500 group-hover:text-white'
                     }`}>
                       {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                     </div>
@@ -172,13 +172,13 @@ export default function FAQPage() {
         {/* Bottom CTA */}
         <div className="mt-16 text-center">
           <div className="rounded-2xl p-8 text-white shadow-xl"
-               style={{ backgroundColor: '#334155' }}>
+               style={{ backgroundColor: '#003366' }}>
             <h3 className="text-2xl font-bold mb-3">Still have questions?</h3>
             <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
               Our friendly team is here to help. Get in touch for personalized assistance with your house clearance needs.
             </p>
             <button className="bg-white px-8 py-3 rounded-full font-semibold transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                    style={{ color: '#334155' }}
+                    style={{ color: '#003366' }}
                     onClick={() => window.location.href = '/contact'}
                     >
               Contact Us Today
