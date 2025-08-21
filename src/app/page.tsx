@@ -1,5 +1,6 @@
 // pages/index.js
 "use client";
+import {company} from "@/constants/info";
 import { faCheck, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
@@ -198,12 +199,12 @@ Need your home, office, or garden cleared quickly? We handle everything – heav
                 </motion.a>
                 
                 <motion.a
-                  href="tel:07538502777"
+                  href={company.phone.value}
                   className="group border-2 border-white/30 hover:border-white/60 hover:bg-white/10 backdrop-blur-sm px-8 py-4 rounded-xl font-bold text-lg text-center transition-all duration-300 flex items-center justify-center"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="mr-2">📞</span> 07538 502777
+                  <span className="mr-2">📞</span> {company.phone.text}
                 </motion.a>
               </motion.div>
 

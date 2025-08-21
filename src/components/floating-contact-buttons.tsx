@@ -4,19 +4,17 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { company } from '@/constants/info';
 
 const FloatingContactButtons = () => {
-  // Replace these with your actual contact numbers
-  const phoneNumber = "+447538502777"; // Your business phone number
-  const whatsappNumber = "+447538502777"; // Your WhatsApp number
 
   const handlePhoneClick = () => {
-    window.open(`tel:${phoneNumber}`, '_self');
+    window.open(company.phone.value, '_self');
   };
 
   const handleWhatsAppClick = () => {
     const message = encodeURIComponent("Hi! I'm interested in your clearance services. Could you please provide more information?");
-    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+    window.open(company.whatsapp.value + '?text=' + message, '_blank');
   };
 
   return (

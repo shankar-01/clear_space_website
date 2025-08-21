@@ -15,6 +15,7 @@ import {
   faChevronLeft,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { company } from "@/constants/info";
 
 export default function FooterSection() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -195,19 +196,19 @@ export default function FooterSection() {
               <ul className="space-y-4 text-sm text-[#003366cc]">
                 <li className="flex items-start gap-3">
                   <FontAwesomeIcon icon={faPhoneAlt} className="text-[#66CCFF] mt-1" />
-                  <a href="tel:07538502777" className="hover:text-[#66CCFF] text-base">
-                    07538 502777
+                  <a href={company.phone.value} className="hover:text-[#66CCFF] text-base">
+                    {company.phone.text}
                   </a>
                 </li>
                 <li className="flex items-start gap-3">
                   <FontAwesomeIcon icon={faEnvelope} className="text-[#66CCFF] mt-1" />
-                  <a href="mailto:info@clearspace.com" className="hover:text-[#66CCFF] text-base">
-                    info@clearspace.com
+                  <a href={company.email.value} className="hover:text-[#66CCFF] text-base">
+                    {company.email.text}
                   </a>
                 </li>
                 <li className="flex items-start gap-3">
                   <FontAwesomeIcon icon={faWhatsapp} className="text-[#66CCFF] mt-1" />
-                  <a href="https://wa.me/07538502777" className="hover:text-[#66CCFF] text-base">
+                  <a href={company.whatsapp.value} className="hover:text-[#66CCFF] text-base">
                     WhatsApp
                   </a>
                 </li>

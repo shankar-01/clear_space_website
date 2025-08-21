@@ -7,7 +7,7 @@ import {
   FaWhatsapp,
   FaMapMarkerAlt,
 } from "react-icons/fa";
-
+import { company } from "@/constants/info";
 export default function ContactPage() {
   return (
     <section
@@ -55,8 +55,8 @@ export default function ContactPage() {
                   <FaPhoneAlt className="text-[#006699] mt-1" size={20} />
                   <div>
                     <p className="font-semibold">Call Us</p>
-                    <a href="tel:07538502777" className="text-[#006699] hover:underline">
-                      07538 502777
+                    <a href={company.phone.value} className="text-[#006699] hover:underline">
+                      {company.phone.text}
                     </a>
                     <p className="text-sm text-gray-500">Mon-Sun: 7am - 9pm</p>
                   </div>
@@ -67,10 +67,10 @@ export default function ContactPage() {
                   <div>
                     <p className="font-semibold">Email</p>
                     <a
-                      href="mailto:info@clearspace.com"
+                      href={company.email.value}
                       className="text-[#006699] hover:underline"
                     >
-                      info@clearspace.com
+                      {company.email.text}
                     </a>
                     <p className="text-sm text-gray-500">Replies within 1 hour</p>
                   </div>
@@ -81,7 +81,7 @@ export default function ContactPage() {
                   <div>
                     <p className="font-semibold">WhatsApp</p>
                     <a
-                      href="https://wa.me/447538502777"
+                      href={company.whatsapp.value}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#006699] hover:underline"

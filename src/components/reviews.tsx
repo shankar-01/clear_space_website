@@ -2,6 +2,7 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTruck, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
+import { company } from "@/constants/info";
 
 export default function ReviewBanner() {
   return (
@@ -34,7 +35,7 @@ export default function ReviewBanner() {
         </p>
         <FontAwesomeIcon icon={faTruck} className="text-[#003366] text-[16px]" />
         <a
-          href="tel:07538502777"
+          href={company.phone.value}
           className="bg-[#003366] text-white px-4 py-2 rounded-md flex items-center gap-2 hover:bg-[#002244] transition font-medium text-[15px]"
         >
           <FontAwesomeIcon icon={faPhoneAlt} className="text-sm" />
