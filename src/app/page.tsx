@@ -1,6 +1,6 @@
 // pages/index.js
 "use client";
-import { faCheck, faArrowRight, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
 import { FaRecycle, FaSmile, FaClock, FaBoxes, FaShieldAlt, FaLeaf } from 'react-icons/fa';
@@ -109,7 +109,7 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               {/* Trust Badge */}
-              <motion.div
+              {/* <motion.div
                 className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-sm"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -121,7 +121,7 @@ export default function Home() {
                   ))}
                 </div>
                 <span className="text-white/90">Rated 5.0 by 850+ customers</span>
-              </motion.div>
+              </motion.div> */}
 
               {/* Main Headline */}
               <div className="space-y-4">
@@ -152,8 +152,9 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
                 >
-                  Fast, eco-friendly clearance services across Surrey and London. 
-                  <span className="text-cyan-300 font-semibold"> Same-day service available.</span>
+                  Stress-Free Property Clearance – Fast, Friendly & Eco-Friendly
+Need your home, office, or garden cleared quickly? We handle everything – heavy lifting, eco-disposal, and same-day service across Surrey & London. 
+                  
                 </motion.p>
               </div>
 
