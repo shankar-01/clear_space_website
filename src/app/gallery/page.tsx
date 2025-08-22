@@ -18,8 +18,8 @@ export default function GalleryPage() {
   return (
     <section className="min-h-screen bg-gray-100 px-4 py-12">
       <div className="max-w-7xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-4">Gallery</h2>
-        <p className="text-gray-600 mb-12">A glimpse of our recent work and events</p>
+        <h2 className="text-4xl font-bold mb-4 text-[#003366]">Gallery</h2>
+        <p className="text-[#003366] mb-12 text-lg">A glimpse of our recent work and events</p>
 
         <div className="columns-1 sm:columns-2 md:columns-3 gap-4 space-y-4">
           {images.map((src, index) => (

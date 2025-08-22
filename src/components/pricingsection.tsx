@@ -10,7 +10,7 @@ const pricing = [   {
         weight: 'e.g. Oven',
         price: '£35-£50',
         image: '/price/single_item.png',
-        color: 'from-indigo-600 via-blue-600 to-cyan-500',
+        color: 'bg-[#003366]',
         glowColor: 'emerald-500/30',
         popular: false,
         features: ['£35 within 5 miles', '£50 within 10 miles', 'Perfect for appliances'],
@@ -20,7 +20,7 @@ const pricing = [   {
         weight: 'e.g. Sofa - Any distance',
         price: '£70',
         image: '/price/lg_single_item.png',
-        color: 'from-indigo-600 via-blue-600 to-cyan-500',
+        color: 'bg-[#003366]',
         glowColor: 'purple-500/30',
         popular: false,
         features: ['Furniture collection', 'Professional handling', 'Any location coverage'],
@@ -30,7 +30,7 @@ const pricing = [   {
         weight: '1/4 Load - 1 to 2 Person Team',
         price: '£120',
         image: '/price/xs_clearance.png',
-        color: 'from-indigo-600 via-blue-600 to-cyan-500',
+        color: 'bg-[#003366]',
         glowColor: 'orange-500/30',
         popular: false,
         features: ['Small room clearance', 'Flexible team size', 'Quick turnaround'],
@@ -40,7 +40,7 @@ const pricing = [   {
         weight: '1/2 Load - 1 to 2 Person Team',
         price: '£225',
         image: '/price/sm_clearance.png',
-        color: 'from-indigo-600 via-blue-600 to-cyan-500',
+        color: 'bg-[#003366]',
         glowColor: 'blue-500/30',
         popular: true,
         features: ['Multi-room clearance', 'Most popular choice', 'Professional team'],
@@ -50,7 +50,7 @@ const pricing = [   {
         weight: '3/4 Load - 2 Person Team',
         price: '£350',
         image: '/price/md_clearance.png',
-        color: 'from-indigo-600 via-blue-600 to-cyan-500',
+        color: 'bg-[#003366]',
         glowColor: 'cyan-500/30',
         popular: false,
         features: ['Large property clearance', 'Dedicated 2-person team', 'Comprehensive service'],
@@ -60,7 +60,7 @@ const pricing = [   {
         weight: 'Full Load - 2-3 Person Team',
         price: '£500',
         image: '/price/lg_clearance.png',
-        color: 'from-indigo-600 via-blue-600 to-cyan-500',
+        color: 'bg-[#003366]',
         glowColor: 'rose-500/30',
         popular: false,
         features: ['Complete house clearance', 'Large dedicated team', 'Maximum capacity service'],
@@ -84,7 +84,7 @@ function PricingCard({ item, index }: { item: typeof pricing[0]; index: number }
                 type: "spring",
                 stiffness: 100 
             }}
-            onHoverStart={() => setIsHovered(true)}
+            onHoverStart={() => setIsHovered(false)}
             onHoverEnd={() => setIsHovered(false)}
             whileHover={{ y: -20, scale: 1.02 }}
         >
@@ -254,7 +254,7 @@ export default function PricingSection() {
         offset: ["start end", "end start"]
     });
 
-    const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+    
     const textY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
     useEffect(() => {
@@ -266,55 +266,7 @@ export default function PricingSection() {
     return (
         <section id="pricing" className="relative py-32 overflow-hidden" ref={ref}>
             {/* Animated background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
-                <motion.div
-                    style={{ y: backgroundY }}
-                    className="absolute inset-0"
-                >
-                    {/* Floating orbs */}
-                    {[...Array(6)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            className="absolute rounded-full mix-blend-screen opacity-20"
-                            animate={{
-                                x: [0, 100, 0],
-                                y: [0, -50, 0],
-                                scale: [1, 1.3, 1],
-                            }}
-                            transition={{
-                                duration: 8 + i * 2,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                delay: i * 0.5,
-                            }}
-                            style={{
-                                width: `${150 + i * 30}px`,
-                                height: `${150 + i * 30}px`,
-                                left: `${5 + i * 15}%`,
-                                top: `${10 + i * 15}%`,
-                                background: [
-                                    "linear-gradient(45deg, #3B82F6, #8B5CF6)",
-                                    "linear-gradient(45deg, #10B981, #06B6D4)",
-                                    "linear-gradient(45deg, #F59E0B, #EF4444)",
-                                    "linear-gradient(45deg, #8B5CF6, #EC4899)",
-                                    "linear-gradient(45deg, #06B6D4, #10B981)",
-                                    "linear-gradient(45deg, #EF4444, #F59E0B)",
-                                ][i],
-                            }}
-                        />
-                    ))}
-                </motion.div>
-
-                {/* Grid pattern */}
-                <div className="absolute inset-0 opacity-10">
-                    <div 
-                        className="absolute inset-0"
-                        style={{
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Cpath d='M20 20.5V18H18v2.5h-2.5V22H18v2.5h2V22h2.5v-1.5H20z'/%3E%3C/g%3E%3C/svg%3E")`
-                        }}
-                    />
-                </div>
-            </div>
+            
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
@@ -331,7 +283,7 @@ export default function PricingSection() {
                 >
                     {/* Badge */}
                     <motion.div
-                        className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 text-sm text-white mb-6"
+                        className="inline-flex items-center bg-[#003366]/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 text-sm text-[#003366]/70 mb-6"
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.2 }}
@@ -347,7 +299,7 @@ export default function PricingSection() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3, duration: 0.8 }}
                     >
-                        <span className="text-white">
+                        <span className="text-[#003366]">
                             Affordable
                         
                         <br />
@@ -365,7 +317,7 @@ export default function PricingSection() {
 
                     {/* Description */}
                     <motion.p
-                        className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+                        className="text-xl text-[#003366] max-w-4xl mx-auto leading-relaxed"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.6, duration: 0.8 }}
@@ -398,33 +350,9 @@ export default function PricingSection() {
                     <div className="absolute -inset-1 bg-gradient-to-r from-green-500/20 to-emerald-500/20 rounded-3xl blur-xl opacity-60"></div>
                     
                     {/* Main card */}
-                    <div className="relative bg-slate-800/80 backdrop-blur-xl border border-slate-700/50 rounded-3xl shadow-2xl overflow-hidden">
+                    <div className="relative bg-[#003366] backdrop-blur-xl border border-slate-700/50 rounded-3xl shadow-2xl overflow-hidden">
                         {/* Background pattern */}
-                        <div className="absolute inset-0 opacity-10">
-                            {[...Array(4)].map((_, i) => (
-                                <motion.div
-                                    key={i}
-                                    className="absolute rounded-full bg-green-400"
-                                    animate={{
-                                        x: [0, 50, 0],
-                                        y: [0, -30, 0],
-                                        scale: [1, 1.2, 1],
-                                    }}
-                                    transition={{
-                                        duration: 6 + i,
-                                        repeat: Infinity,
-                                        ease: "easeInOut",
-                                        delay: i * 0.5,
-                                    }}
-                                    style={{
-                                        width: `${60 + i * 20}px`,
-                                        height: `${60 + i * 20}px`,
-                                        right: `${10 + i * 20}%`,
-                                        top: `${20 + i * 15}%`,
-                                    }}
-                                />
-                            ))}
-                        </div>
+                        
 
                         <div className="relative z-10 p-12">
                             {/* Header */}

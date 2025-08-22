@@ -15,7 +15,6 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -39,10 +38,4 @@ body {
   100% {
     background-position: 0% 50%;
   }
-}
-
-.shiny-navbar {
-  background: linear-gradient(270deg, #003366, #3399ff, #003366);
-  background-size: 600% 600%;
-  animation: shinyGradient 10s ease infinite;
 }

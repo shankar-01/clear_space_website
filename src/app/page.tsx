@@ -49,7 +49,7 @@ export default function Home() {
   return (
     <main>
       {/* Hero Section */}
-      <section className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white overflow-hidden">
+      <section className="relative min-h-screen text-[#003366] overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           {/* Animated Orbs */}
@@ -66,31 +66,7 @@ export default function Home() {
               ease: "easeInOut" as const
             }}
           />
-          <motion.div
-            className="absolute bottom-32 right-20 w-96 h-96 bg-gradient-to-r from-cyan-400/15 to-blue-500/15 rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              x: [0, -40, 0],
-              y: [0, 20, 0],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut" as const
-            }}
-          />
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-indigo-400/10 to-purple-400/10 rounded-full blur-2xl"
-            animate={{
-              rotate: [0, 360],
-              scale: [1, 1.3, 1],
-            }}
-            transition={{
-              duration: 15,
-              repeat: Infinity,
-              ease: "linear" as const
-            }}
-          />
+          
         </div>
 
         {/* Grid Pattern Overlay */}
@@ -131,7 +107,7 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                 >
-                  <p className="text-5xl md:text-7xl font-black leading-tight bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent">
+                  <p className="text-5xl md:text-7xl font-black leading-tight text-[#003366]">
                   Professional Property Clearance
                   </p>
                   {/* <TypeAnimation
@@ -148,7 +124,7 @@ export default function Home() {
                 </motion.div>
                 
                 <motion.p
-                  className="text-xl md:text-2xl text-blue-100 leading-relaxed max-w-2xl"
+                  className="text-xl md:text-2xl text-[#334466] leading-relaxed max-w-2xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
@@ -171,9 +147,9 @@ Need your home, office, or garden cleared quickly? We handle everything – heav
                   { icon: <FaLeaf />, text: "98% Recycling Rate" },
                   { icon: <FaClock />, text: "24/7 Available" }
                 ].map((feature, index) => (
-                  <div key={index} className="flex items-center bg-white/5 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10">
-                    <div className="text-cyan-400 mr-2 text-lg">{feature.icon}</div>
-                    <span className="text-white/90 text-sm font-medium">{feature.text}</span>
+                  <div key={index} className="flex items-center bg-[#003366]/5 backdrop-blur-sm rounded-lg px-3 py-2 border border-[#003366]/10">
+                    <div className="text-[#003366] mr-2 text-lg">{feature.icon}</div>
+                    <span className="text-[#003366]/90 text-sm font-medium">{feature.text}</span>
                   </div>
                 ))}
               </motion.div>
@@ -187,7 +163,7 @@ Need your home, office, or garden cleared quickly? We handle everything – heav
               >
                 <motion.a
                   href="#contact"
-                  className="group relative bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 px-8 py-4 rounded-xl font-bold text-lg text-center transition-all duration-300 shadow-2xl hover:shadow-cyan-500/25 overflow-hidden"
+                  className="text-white group relative bg-[#003366] px-8 py-4 rounded-xl font-bold text-lg text-center transition-all duration-300 shadow-2xl hover:shadow-cyan-500/25 overflow-hidden"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -200,7 +176,7 @@ Need your home, office, or garden cleared quickly? We handle everything – heav
                 
                 <motion.a
                   href={company.phone.value}
-                  className="group border-2 border-white/30 hover:border-white/60 hover:bg-white/10 backdrop-blur-sm px-8 py-4 rounded-xl font-bold text-lg text-center transition-all duration-300 flex items-center justify-center"
+                  className="group border-2 border-[#003366]/30 hover:border-[#003366]/60 hover:bg-white/10 backdrop-blur-sm px-8 py-4 rounded-xl font-bold text-lg text-center transition-all duration-300 flex items-center justify-center"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -210,15 +186,15 @@ Need your home, office, or garden cleared quickly? We handle everything – heav
 
               {/* Trust Indicators */}
               <motion.div
-                className="flex items-center bg-gradient-to-r from-green-500/10 to-blue-500/10 backdrop-blur-sm border border-green-300/20 p-4 rounded-xl max-w-md"
+                className="flex items-center bg-[#003366]/5 backdrop-blur-sm border border-green-300/20 p-4 rounded-xl max-w-md"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
               >
-                <div className="bg-green-500 text-white rounded-full p-2 mr-3">
+                <div className="bg-[#003366] text-white rounded-full p-2 mr-3">
                   <FontAwesomeIcon icon={faCheck} className="text-sm" />
                 </div>
-                <div className="text-green-100 text-sm">
+                <div className="text-[#003366]/90 text-sm">
                   <p className="font-semibold">Available Today</p>
                   <p className="opacity-90">Free quotes • Licensed carriers • Eco-friendly disposal</p>
                 </div>
@@ -235,7 +211,7 @@ Need your home, office, or garden cleared quickly? We handle everything – heav
               <div className="relative">
                 {/* Main Card */}
                 <motion.div
-                  className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg border border-white/20 rounded-3xl p-8 shadow-2xl min-h-[500px] w-80 md:w-96"
+                  className="relative bg-[#003366] backdrop-blur-lg border border-white/20 rounded-3xl p-8 shadow-2xl min-h-[500px] w-80 md:w-96"
                   animate={floatingAnimation}
                 >
                   {/* Header */}

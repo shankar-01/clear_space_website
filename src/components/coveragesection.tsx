@@ -19,7 +19,7 @@ const defaultIcon = L.icon({
 
 
 // Consistent card styling from services page
-const CARD_COLOR = "from-indigo-600 via-blue-600 to-cyan-500";
+const CARD_COLOR = "bg-[#003366]";
 const CARD_GLOW = "rgba(129, 140, 248, 0.3)";
 
 export default function ModernCoverageSection() {
@@ -35,7 +35,7 @@ export default function ModernCoverageSection() {
     offset: ["start end", "end start"],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   useEffect(() => {
@@ -78,25 +78,7 @@ export default function ModernCoverageSection() {
   return (
     <div ref={containerRef} className="relative min-h-screen overflow-hidden">
       {/* Animated Background - Same as services page */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
-        <motion.div style={{ y: backgroundY }} className="absolute inset-0">
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full mix-blend-screen opacity-20"
-              animate={{ x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.3, 1] }}
-              transition={{ duration: 8 + i * 2, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}
-              style={{
-                width: `${150 + i * 30}px`,
-                height: `${150 + i * 30}px`,
-                left: `${5 + i * 15}%`,
-                top: `${10 + i * 15}%`,
-                background: "linear-gradient(45deg, #3B82F6, #8B5CF6)",
-              }}
-            />
-          ))}
-        </motion.div>
-      </div>
+      
 
       <section ref={sectionRef} className="relative py-20 px-4">
         <div className="container mx-auto">
@@ -107,15 +89,15 @@ export default function ModernCoverageSection() {
               style={{ y: textY }} 
               className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             >
-              <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 text-sm text-white mb-6">
+              <div className="inline-flex items-center bg-[#003366]/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 text-sm text-[#003366]/70 mb-6">
                 <MapPin className="w-4 h-4 text-cyan-400 mr-2" />
                 Our Coverage Network
               </div>
-              <h2 className="text-6xl md:text-8xl font-bold mb-4 text-white">
+              <h2 className="text-6xl md:text-8xl font-bold mb-4 text-[#003366]">
                 Coverage Area
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-cyan-400 mx-auto mb-8 rounded-full" />
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-[#003366] max-w-3xl mx-auto leading-relaxed">
                 Serving London, Surrey, and Berkshire with 
                 <span className="font-semibold"> professional clearance services </span>
                 across 14+ strategic locations.

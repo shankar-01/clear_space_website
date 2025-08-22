@@ -39,7 +39,7 @@ export default function CoverageMap() {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-bold text-center text-gray-800"
+        className="text-4xl md:text-5xl font-bold text-center text-[#003366]"
       >
         Our Office Coverage
       </motion.h1>
@@ -84,12 +84,12 @@ export default function CoverageMap() {
           <motion.div
             key={index}
             whileHover={{ scale: 1.03 }}
-            className="bg-white rounded-xl border shadow-md p-4 transition-all duration-300"
+            className="bg-white rounded-xl border shadow-md p-4 transition-all duration-300 text-[#003366]"
           >
-            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+            <h3 className="text-xl font-semibold mb-2">
               {office.name}
             </h3>
-            <p className="text-gray-600">{office.address}</p>
+            <p>{office.address}</p>
           </motion.div>
         ))}
       </motion.div>

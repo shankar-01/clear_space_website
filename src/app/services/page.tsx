@@ -11,8 +11,8 @@ const services = [
     icon: "🏠",
     description: "Experience a hassle-free house clearance with Clear Space. Our skilled team expertly handles everything from full house clearouts to targeted areas like sheds, attics, and basements.",
     features: ["Full property clearance", "Probate services", "Same-day available"],
-    color: "from-violet-600 via-purple-600 to-indigo-600",
-    glowColor: "violet",
+    color: 'bg-[#003366]',
+    glowColor: "blue",
     image: "https://www.junkhunters.co.uk/wp-content/uploads/2017/09/house-clearance-guide-when-you-move-home.jpg",
   },
   {
@@ -89,7 +89,7 @@ const services = [
   },
 ];
 
-const CARD_COLOR = "from-indigo-600 via-blue-600 to-cyan-500"; // single gradient for all cards
+const CARD_COLOR = "bg-[#003366]"; // single gradient for all cards
 const CARD_GLOW = "rgba(129, 140, 248, 0.3)"; // subtle glow that contrasts with background
 
 function FloatingCard({ service }: { service: (typeof services)[0] }) {
@@ -182,13 +182,13 @@ export default function ServicesPage() {
     offset: ["start end", "end start"],
   });
 
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
     <div ref={containerRef} className="relative min-h-screen overflow-hidden">
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950 to-purple-950">
         <motion.div style={{ y: backgroundY }} className="absolute inset-0">
           {[...Array(6)].map((_, i) => (
             <motion.div
@@ -206,24 +206,24 @@ export default function ServicesPage() {
             />
           ))}
         </motion.div>
-      </div>
+      </div> */}
 
       {/* Hero */}
       <section className="relative py-32 px-4 text-center">
         <div className="max-w-5xl mx-auto">
           <motion.div style={{ y: textY }} className="mb-16">
-            <div className="inline-flex items-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 text-sm text-white mb-6">
+            <div className="inline-flex items-center bg-[#003366]/10 backdrop-blur-sm border border-white/20 rounded-full px-6 py-2 text-sm text-[#003366]/70 mb-6">
               <FontAwesomeIcon icon={faStar} className="mr-2 text-yellow-400" />
               Professional Clearance Services
             </div>
 
-            <h2 className="text-6xl md:text-8xl font-bold mb-4 text-white">
+            <h2 className="text-6xl md:text-8xl font-bold mb-4 text-[#003366]">
               Expert Services,<br />Done Right
             </h2>
 
             <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-cyan-400 mx-auto mb-8 rounded-full" />
 
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl text-[#003366]/90 max-w-3xl mx-auto leading-relaxed">
               From home and garden clearances to office and storage removals — Clear Space delivers
               <span className="font-semibold"> professional, respectful, and efficient </span>
               clearance solutions tailored to your needs.

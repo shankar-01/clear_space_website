@@ -105,7 +105,7 @@ function TiltCard({ feature }: { feature: (typeof features)[0] }) {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#0e1421] text-white px-4 sm:px-6 md:px-10 lg:px-20 py-12 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-[#003366] text-white px-4 sm:px-6 md:px-10 lg:px-20 py-12 max-w-7xl mx-auto">
       {/* Top Image */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
