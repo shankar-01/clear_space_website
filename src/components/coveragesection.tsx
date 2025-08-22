@@ -3,8 +3,8 @@ import { MapPin} from "lucide-react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import { motion, useTransform, useScroll } from "framer-motion";
-import {officeLocations} from "./officeLocations";
-import { areas } from "./area";
+import {officeLocations} from "@/constants/officeLocations";
+import { areas } from "@/constants/area";
 
 
 const defaultIcon = L.icon({

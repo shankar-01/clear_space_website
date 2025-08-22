@@ -10,7 +10,7 @@ import {
 import L from 'leaflet';
 import { motion } from 'framer-motion';
 import 'leaflet/dist/leaflet.css';
-import { officeLocations } from './officeLocations';
+import { officeLocations } from '@/constants/officeLocations';
 // Fix Leaflet marker icon issue
 const defaultIcon = L.icon({
   iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
