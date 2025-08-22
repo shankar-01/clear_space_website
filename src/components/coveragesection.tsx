@@ -106,7 +106,7 @@ export default function ModernCoverageSection() {
           </div>
 
           {/* Main Content Grid */}
-          <div className="flex lg:flex-row gap-8 items-stretch">
+          <div className="flex flew-wrap flex-col lg:flex-row gap-8 items-stretch">
             
             {/* Map Card */}
             <div className={`flex-1 h-full lg:w-3/4 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
