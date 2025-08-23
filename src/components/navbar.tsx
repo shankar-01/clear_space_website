@@ -13,6 +13,7 @@ import {
   FaMapMarkerAlt,
   FaEnvelope,
   FaPoundSign,
+  FaHome,
 } from "react-icons/fa";
 
 export default function Navbar() {
@@ -42,6 +43,7 @@ export default function Navbar() {
     pathname === href || pathname.startsWith(href + "/");
 
   const menuItems = [
+    { title: "Home", href: "/", icon: <FaHome /> },
     { title: "About", href: "/about", icon: <FaInfoCircle /> },
     { title: "Services", href: "/services", icon: <FaConciergeBell /> },
     { title: "Pricing", href: "/pricing", icon: <FaPoundSign /> },
@@ -93,8 +95,8 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden lg:flex lg:items-center lg:gap-6">
-          <ul className="flex gap-6 items-center">
+        <nav className="hidden lg:flex lg:items-center lg:gap-6 sm:gap-2">
+          <ul className="flex items-center lg:gap-4">
             {menuItems.map((item) => (
               <NavItem
                 key={item.title}
