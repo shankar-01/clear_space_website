@@ -10,37 +10,37 @@ const features = [
     title: "Cost-effective",
     description:
       "We provide fair and transparent pricing with fixed, upfront quotes—no hidden fees.",
-    color: "from-indigo-600 via-blue-600 to-cyan-500",
+    color: "bg-[#003366]",
   },
   {
     title: "Experienced",
     description:
       "Our team has extensive expertise handling all types of waste and clearance challenges.",
-    color: "from-indigo-600 via-blue-600 to-cyan-500",
+    color: "bg-[#003366]",
   },
   {
     title: "Environmental Responsibility",
     description:
       "We prioritize recycling and donate suitable items to charity to reduce landfill waste.",
-    color: "from-indigo-600 via-blue-600 to-cyan-500",
+    color: "bg-[#003366]",
   },
   {
     title: "Expert Equipment",
     description:
       "We use advanced vehicles and tools for efficient and safe clearance operations.",
-    color: "from-indigo-600 via-blue-600 to-cyan-500",
+    color: "bg-[#003366]",
   },
   {
     title: "Excellent Customer Care",
     description:
       "Friendly, professional service with full insurance for peace of mind.",
-    color: "from-indigo-600 via-blue-600 to-cyan-500",
+    color: "bg-[#003366]",
   },
   {
     title: "Compliant",
     description:
       "We follow all local waste regulations, with licenses and permits in place.",
-    color: "from-indigo-600 via-blue-600 to-cyan-500",
+    color: "bg-[#003366]",
   },
 ];
 
@@ -105,7 +105,7 @@ function TiltCard({ feature }: { feature: (typeof features)[0] }) {
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#003366] text-white px-4 sm:px-6 md:px-10 lg:px-20 py-12 max-w-7xl mx-auto">
+    <div className="min-h-screen bg-white px-4 sm:px-6 md:px-10 lg:px-20 py-12 max-w-7xl mx-auto">
       {/* Top Image */}
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
@@ -126,7 +126,7 @@ export default function AboutPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.5 }}
-        className="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-10 text-white text-center"
+        className="text-3xl sm:text-4xl md:text-6xl font-extrabold mb-10 text-[#003366] text-center"
       >
         About Our Services
       </motion.h1>
@@ -139,7 +139,7 @@ export default function AboutPage() {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
-        <p className="text-base sm:text-lg text-white/90 leading-relaxed">
+        <p className="text-base sm:text-lg text-[#003366]/90 leading-relaxed">
           Welcome to <span className="font-semibold">Clear Space Property Services</span> – your friendly and reliable partner for house, garden, office, and waste clearances across Surrey, London, and the South East. We&apos;re a fully licensed team, dedicated to providing responsible, efficient, and eco-friendly clearance solutions that give you peace of mind.
           <br /><br />
           Whether you need a quick garden tidy-up, an office cleared, or a full property clearance, we handle every job with professionalism, care, and attention to detail – making the process simple and stress-free for you.
@@ -162,7 +162,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl font-bold mb-10 text-center text-white"
+          className="text-3xl sm:text-4xl font-bold mb-10 text-center text-[#003366]"
         >
           Why Choose Us?
         </motion.h2>
@@ -181,7 +181,7 @@ export default function AboutPage() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl font-bold mb-10 text-center text-white"
+          className="text-3xl sm:text-4xl font-bold mb-10 text-center text-[#003366]"
         >
           From Our Instagram
         </motion.h2>
@@ -218,7 +218,7 @@ export default function AboutPage() {
           <Link href="https://www.instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">
             <motion.button
               whileHover={{ scale: 1.05 }}
-              className="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 text-white px-6 sm:px-8 py-3 rounded-full font-semibold text-base sm:text-lg shadow-lg transition-transform duration-300"
+              className="bg-[#003366] text-white px-6 sm:px-8 py-3 rounded-full font-semibold text-base sm:text-lg shadow-lg transition-transform duration-300"
             >
               Follow us on Instagram
             </motion.button>
